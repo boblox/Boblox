@@ -1,0 +1,122 @@
+﻿/*!Mixins.css*/
+@import (reference) "Bootstrap/variables.less";
+@import (reference) "Bootstrap/mixins.less";
+@import (reference) "variables.less";
+/*@import (reference) "bootstrap-n-column.less";*/
+
+.social-icon(@x, @width) {
+    span {
+        @height: 23px;
+        display: block;
+        background: url('images/icons-contact.png') no-repeat;
+        width: @width;
+        height: @height;
+        background-position: @x 0;
+    }
+}
+
+.social-icons(@background-color: black) {
+    ul.contacts {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: flex;
+
+        li {
+            a {
+                .transition(all 0.4s);
+                display: block;
+                background-color: @background-color;
+
+                /*&.rss {
+                    .social-icon(0, 18px);
+                }*/
+
+                &.vk {
+                    .social-icon(0, 23px);
+                }
+
+                &.facebook {
+                    .social-icon(-23px, 12px);
+                }
+
+                /*&.instagram {
+                    .social-icon(-26px, 14px);
+                }
+
+                &.donate {
+                    .social-icon(-40px, 14px);
+                }*/
+            }
+        }
+    }
+}
+
+.calendar-icon {
+    .news-icon(0, 18px);
+}
+
+.time-icon {
+    .news-icon(-18px, 14px);
+}
+
+.location-icon {
+    .news-icon(-32px, 13px);
+}
+
+/*.comments-icon {
+    .news-icon(-14px, 15px);
+}
+
+.share-icon {
+    .news-icon(-29px, 14px);
+}
+
+.category-icon {
+    .news-icon(-43px, 12px);
+}*/
+
+.news-icon(@x, @width) {
+    @height: 18px;
+    display: inline-block;
+    background-image: url('images/news-icons.png');
+    width: @width;
+    height: @height;
+    background-position: @x 0;
+    opacity: 1;
+}
+
+.news-category-color(@color) {
+    background-color: white;
+    color: @color;
+
+    span {
+        border-left: 2px solid @color;
+    }
+
+    &.active, &:hover {
+        color: white;
+        background-color: @color;
+    }
+}
+
+.vertical-align-middle {
+    position: relative;
+    top: 50%;
+    .translate(0, -50%);
+}
+
+.no-gutters {
+    &.row {
+        margin-right: 0;
+        margin-left: 0;
+
+        > [class*="col-"] {
+            padding-right: 0;
+            padding-left: 0;
+        }
+    }
+}
+
+/*Create custom 15 column layout for bootstrap*/
+/*.col-set(15);*/

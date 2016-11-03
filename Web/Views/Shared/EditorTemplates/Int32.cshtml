@@ -1,0 +1,4 @@
+﻿@{
+    var @class = "form-control " + ViewData["class"];
+}
+@Html.TextBox(string.Empty, ViewData.TemplateInfo.FormattedModelValue, new { @class, type = "number" })

@@ -1,0 +1,54 @@
+﻿@inherits UmbracoViewPage<NewsResult>
+@{
+    var items = Model.Items;
+}
+
+@foreach (var item in items)
+{
+    var title = item.GetTitle();
+    var image = item.Image;
+    var subHeader = item.Subtitle;
+    var content = new HtmlString(string.Empty); // can't parse content as we are now using Grid Layout
+
+    <article class="news-item">
+        <div class="row">
+            <div class="col-xs-8">
+                @if (image != null)
+                {
+                    var imageUrl = image.Src + image.GetCropUrl(image.Crops.First().Alias);
+                    <a href="@item.Url" class="image">
+                        <img class="img-responsive" src="@imageUrl" alt="" />
+                    </a>
+                }
+            </div>
+            <div class="col-xs-16">
+                <header class="title">
+                    <h4>
+                        <a href="@item.Url">@title</a>
+                    </h4>
+                    @{ Html.RenderPartial("~/Views/Partials/News/NewsItemInfo.cshtml", item);}
+                    @{ Html.RenderPartial("~/Views/Partials/News/NewsItemTags.cshtml", item);}
+                </header>
+                @{
+                    if (!string.IsNullOrEmpty(subHeader))
+                    {
+                        <div class="byline">
+                            @Html.GetInnerText(string.IsNullOrWhiteSpace(subHeader) ?
+                                content : new HtmlString(subHeader), 200)
+                            <a href="@item.Url">@Localization.ItemReadMore</a>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </article>
+                    }
+
+@{
+    var dict = new ViewDataDictionary
+    {
+        { "DataAttr", "data-news-link" },
+        { "RoutingObj", "newsRouting" }
+    };
+    Html.RenderPartial("~/Views/Partials/Common/ArticlesPager.cshtml", Model, dict);
+}

@@ -1,0 +1,5 @@
+﻿@{
+    var @class = "form-control " + ViewData["class"];
+}
+@Html.TextArea(string.Empty, ViewData.TemplateInfo.FormattedModelValue.ToString(), 
+    new { @class, placeholder = ViewData["placeholder"], rows = 4 })

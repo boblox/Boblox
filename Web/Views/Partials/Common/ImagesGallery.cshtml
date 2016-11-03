@@ -1,0 +1,47 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    var carouselImagesData = ViewData["carouselImages"];
+    var carouselImages = carouselImagesData.IfNotNull(
+        d => ((IEnumerable<dynamic>)d).ToList(),
+        new List<dynamic>());
+    var id1 = Utils.GenerateId("carouselItems");
+    var id2 = Utils.GenerateId("carouselItems");
+}
+
+@if (carouselImages.Count > 0)
+{
+    //Gallery which consists of 2 synchronized carousel parts - slide and preview-list
+    <article class="gallery-widget-container">
+        <div id="@id1" class="slide">
+            @*<div class="owl-carousel-prev not-mobile"></div>*@
+            <div class="owl-carousel">
+                @foreach (var image in carouselImages)
+                {
+                    <img class="lazyOwl" data-src="@image.Url" />
+                }
+            </div>
+            @*<div class="owl-carousel-next not-mobile"></div>*@
+        </div>
+
+        <div id="@id2" class="preview-list">
+            <div class="owl-carousel-prev not-mobile">
+                <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+            </div>
+            <div class="owl-carousel">
+                @foreach (var image in carouselImages)
+                {
+                    <img class="lazyOwl" data-src="@Html.GetThumbnailUrl((string) image.Url, 300)" />
+                }
+            </div>
+            <div class="owl-carousel-next not-mobile">
+                <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+            </div>
+        </div>
+    </article>
+
+    <script type="text/javascript">
+        $(function () {
+            InitImagesGallery('@id1', '@id2');
+        });
+    </script>
+}

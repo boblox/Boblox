@@ -1,0 +1,16 @@
+{
+  "id": "80cb19fc-7940-47a3-ad0a-844b428d6cbe",
+  "name": "Send email",
+  "form": "f5e93d38-c0c4-4eab-83b4-02d1acda6def",
+  "active": true,
+  "workflowTypeId": "e96badd7-05be-4978-b8d9-b3d733de70a5",
+  "executesOn": "Submitted",
+  "settings": {
+    "Email": "oum.lviv@gmail.com",
+    "SenderEmail": null,
+    "Subject": "Завка на вступ в організацію",
+    "Message": "Заявка",
+    "Attachment": null
+  },
+  "sortOrder": 0
+}

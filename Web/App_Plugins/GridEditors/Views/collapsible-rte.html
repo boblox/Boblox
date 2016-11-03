@@ -1,0 +1,49 @@
+﻿<div class="coloured-header" ng-controller="grid.coloured-header.controller">
+    <textarea rows="1"
+              umb-auto-resize
+              umb-auto-focus
+              class="textstring input-block-level {{control.headerValue.colour}}" id="{{control.uniqueId}}_text"
+              ng-model="control.headerValue.text"
+              ng-attr-style="{{control.editor.config.style}}" placeholder="Write text here..."></textarea>
+    <select rows="1"
+            ng-model="control.headerValue.colour" id="{{control.uniqueId}}_text">
+        <option value="orange">Оранжевий</option>
+        <option value="orange-light">Моркв'яний</option>
+        <option value="ochre">Охра</option>
+        <option value="yellow">Жовтий</option>
+    </select>
+</div>
+
+<div ng-controller="Umbraco.PropertyEditors.Grid.RichTextEditorController as vm">
+    <div grid-rte
+         configuration="model.config.rte"
+         value="control.value"
+         unique-id="control.$uniqueId"
+         on-link-picker-click="vm.openLinkPicker"
+         on-media-picker-click="vm.openMediaPicker"
+         on-embed-click="vm.openEmbed"
+         on-macro-picker-click="vm.openMacroPicker">
+    </div>
+    <umb-overlay ng-if="vm.linkPickerOverlay.show"
+                 model="vm.linkPickerOverlay"
+                 position="right"
+                 view="vm.linkPickerOverlay.view">
+    </umb-overlay>
+    <umb-overlay ng-if="vm.mediaPickerOverlay.show"
+                 model="vm.mediaPickerOverlay"
+                 position="right"
+                 view="vm.mediaPickerOverlay.view">
+    </umb-overlay>
+    <umb-overlay ng-if="vm.embedOverlay.show"
+                 model="vm.embedOverlay"
+                 position="right"
+                 view="vm.embedOverlay.view">
+    </umb-overlay>
+    <umb-overlay ng-if="vm.macroPickerOverlay.show"
+                 model="vm.macroPickerOverlay"
+                 view="vm.macroPickerOverlay.view"
+                 position="right">
+    </umb-overlay>
+</div>
+
+

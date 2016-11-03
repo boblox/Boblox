@@ -1,0 +1,7 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@{
+    var emailFrom = (string)Model.MacroParameters["EmailFrom"];
+    var emailTo = (string)Model.MacroParameters["EmailTo"];
+}
+
+@Html.Action("Index", "ContactForm", new { emailFrom, emailTo })

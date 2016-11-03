@@ -1,0 +1,30 @@
+﻿{
+    "gridEditors": [
+        {
+            "name": "Редактор тексту, який вміє складатись",
+            "alias": "collapsible-rte",
+            "render": "/Views/Partials/Grid/Editors/CollapsibleRte.cshtml",
+            "view": "/App_Plugins/GridEditors/Views/collapsible-rte.html",
+            "icon": "icon-article",
+            "config": {
+                "style": "font-size: 25px; line-height: 35px; font-weight: normal; color: white;"
+            }
+        },
+        {
+            "name": "Заголовок: кольоровий",
+            "alias": "coloured-header",
+            "render": "/Views/Partials/Grid/Editors/ColouredHeader.cshtml",
+            "view": "/App_Plugins/GridEditors/Views/coloured-header.html",
+            "icon": "icon-forms-paypal",
+            "config": {
+                "style": "font-size: 25px; line-height: 35px; font-weight: normal; color: white;"
+            }
+        }
+    ],
+    "css": [
+        "/App_Plugins/GridEditors/Css/grid-editors.css"
+    ],
+    "javascript": [
+        "/App_Plugins/GridEditors/Controllers/coloured-header.controller.js"
+    ]
+}

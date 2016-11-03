@@ -1,0 +1,40 @@
+﻿@inherits UmbracoTemplatePage<GalleryItem>
+@{
+    Layout = "ContentBase.cshtml";
+
+    var item = Model.Content;
+    var title = item.GetTitle();
+    var imageIds = item.Images.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse);
+    var images = Umbraco.TypedMedia(imageIds);
+    var id = "gallery-item";
+}
+@section Body
+{
+    <article class="gallery-item-container" id="@id">
+        <header>
+            <h4>
+                @title
+            </h4>
+            <span>@item.Subtitle</span>
+        </header>
+        <section class="images">
+            <div class="row">
+                @foreach (var image in images)
+                {
+                    var url = image.Url;
+                    <div class="col-sm-6">
+                        <a href="@url" class="image">
+                            <img class="img-responsive" src="@Html.GetThumbnailUrl(url, 300, 300)" alt=""/>
+                        </a>
+                    </div>
+                }
+            </div>
+        </section>
+    </article>
+
+    <script type="text/javascript">
+        $(function () {
+            InitGalleryItem('@id');
+        });
+    </script>
+}

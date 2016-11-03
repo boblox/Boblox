@@ -1,0 +1,43 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    var page = (Home)Model.Content;
+    var site = page.AncestorOrSelf(1);
+    var overview = site.FirstChild<GalleryOverview>();
+    var items = ContentManager.GetGalleryItems(0, 1, 100).Items
+       .GetRandom(Consts.GalleryConfig.ItemsOnFrontPage);
+}
+
+<div class="home-gallery-wrapper">
+    <div class="container">
+        <section class="home-gallery-container">
+            <header class="title">
+                <h2>@page.GalleryTitle</h2>
+            </header>
+            <section class="content">
+                <div class="row no-gutters">
+                    @foreach (var item in items)
+                    {
+                        var image = item.Image;
+
+                        <div class="col-sm-8 col-md-6">
+                            <article class="gallery-item">
+                                <a href="@item.Url">
+                                    @if (image != null)
+                                    {
+                                        var imageUrl = image.Src + image.GetCropUrl(image.Crops.First().Alias);
+                                        <div class="image">
+                                            <img class="img-responsive center-block" src="@imageUrl" alt="">
+                                        </div>
+                                    }
+                                </a>
+                            </article>
+                        </div>
+                    }
+                </div>
+            </section>
+            <section class="read-more">
+                <a href="@overview.Url" class="btn btn-default">@page.GalleryReadMore</a>
+            </section>
+        </section>
+    </div>
+</div>

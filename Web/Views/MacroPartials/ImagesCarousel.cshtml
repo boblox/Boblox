@@ -1,0 +1,17 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@{
+    var carouselImagesStr = (string)Model.MacroParameters["Images"];
+    var imageIds = carouselImagesStr.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse);
+    var carouselImages = Umbraco.Media(imageIds);
+}
+
+@if (Request.RawUrl.Contains("GetMacroResultAsHtmlForEditor"))
+{
+    /*Render differently in backoffice*/
+    <span>Images carousel with @carouselImages.Count() images</span>
+}
+else
+{
+    var dict = new ViewDataDictionary { { "carouselImages", carouselImages } };
+    Html.RenderPartial("/Views/Partials/Common/ImagesCarousel.cshtml", dict);
+}

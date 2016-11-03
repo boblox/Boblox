@@ -1,0 +1,26 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    var homePage = Model.Content.AncestorOrSelf(1);
+}
+
+<div class="fiction-footer-wrapper"></div>@*Used just for making a proper padding*@
+<footer class="footer-wrapper">
+    <div class="container">
+        <div class="footer-container">
+            <div class="">
+                @{Html.RenderPartial("~/Views/Partials/Common/Logo.cshtml");}
+            </div>
+            <div class="contacts">
+                @{Html.RenderPartial("~/Views/Partials/Common/Social.cshtml");}
+            </div>
+            <nav class="footer-nav hidden-xs">
+                <ul>
+                    @{
+                        var dict = new ViewDataDictionary(ViewData) { { "menuItem", homePage } };
+                        Html.RenderPartial("~/Views/Partials/Navigation/TopNavigationList.cshtml", dict);
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</footer>

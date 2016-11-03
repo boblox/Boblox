@@ -1,0 +1,16 @@
+﻿@inherits UmbracoTemplatePage<TextPage>
+@{
+    Layout = "ContentBase.cshtml";
+
+    var item = Model.Content;
+    var title = item.GetTitle();
+}
+
+@section Body
+{
+    <div class="text-page-container">
+        <div class="grid-content">
+            @Html.GetGridHtml(item, TextPage.GetModelPropertyType(i => i.Content).PropertyTypeAlias, "Custom")
+        </div>
+    </div>
+}

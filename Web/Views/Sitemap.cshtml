@@ -1,0 +1,68 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    Layout = "LayoutCustom.cshtml";
+    Response.ContentType = "text/xml";
+
+    var home = Model.Content.AncestorOrSelf(1);
+    var newsRoot = home.Descendant<NewsOverview>();
+    var galleryRoot = home.Descendant<GalleryOverview>();
+}
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemalocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    @DrawNode(home)
+    @DrawVisibleChildNodes(home)
+
+    @if (newsRoot != null)
+    {
+        @DrawChildNodes(newsRoot);
+    }
+
+    @if (galleryRoot != null)
+    {
+        DrawChildNodes(galleryRoot);
+    }
+</urlset>
+
+@helper DrawVisibleChildNodes(IPublishedContent startNode)
+{
+    foreach (var node in startNode.Children.Where(x => x.IsVisible()))
+    {
+        @DrawNode(node)
+        @DrawVisibleChildNodes(node)
+    }
+}
+
+@helper DrawChildNodes(IPublishedContent startNode)
+{
+    foreach (var node in startNode.Children)
+    {
+        @DrawNode(node)
+        @DrawChildNodes(node)
+    }
+}
+
+@helper DrawNode(IPublishedContent node)
+{
+    <url>
+        <loc>@GetUrlWithDomainPrefix(node.Url)</loc>
+        <lastmod>@(string.Format("{0:s}+00:00", node.UpdateDate))</lastmod>
+    </url>
+}
+
+@functions {
+    private static string GetUrlWithDomainPrefix(string url)
+    {
+
+        if (url.StartsWith("/"))
+            url = url.Substring(1);
+
+        var domainPrefix = string.Format("http://{0}/", HttpContext.Current.Request.ServerVariables["HTTP_HOST"]);
+
+        if (url.StartsWith(domainPrefix))
+            return url;
+        else
+            return domainPrefix + url;
+    }
+}

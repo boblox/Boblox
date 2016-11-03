@@ -1,0 +1,64 @@
+﻿@inherits UmbracoViewPage<Pager>
+@{
+    var page = Model.Page;
+    var totalPages = Model.TotalPages;
+    var dataAttr = (string)ViewData["DataAttr"];
+    var routingObj = (string)ViewData["RoutingObj"];
+    Func<dynamic, HelperResult> leftTriangle = @<span class="glyphicon glyphicon-chevron-left"></span>;
+    Func<dynamic, HelperResult> rightTriangle = @<span class="glyphicon glyphicon-chevron-right"></span>;
+}
+
+@helper RenderPage(
+    int currentPageNumber,
+    int renderPageNumber,
+    IHtmlString template,
+    string dataAttr,
+    string @class = null)
+{
+    <li class="@(@class)">
+        <a @dataAttr data-page="@renderPageNumber" href="#">
+            @template
+        </a>
+    </li>
+}
+
+@if (totalPages > 0)
+{
+    <div class="text-center">
+        <ul class="articles-pager">
+            @if (page != 1)
+            {
+                @RenderPage(page, page - 1, leftTriangle(null), @dataAttr, "pager-triangle")
+            }
+            @RenderPage(page, 1, Html.Raw(1.ToString()), @dataAttr)
+
+            @if (page - Consts.NewsConfig.PagerInterval > 2)
+            {
+                <li>...</li>
+            }
+            @for (var i = Math.Max(2, page - Consts.NewsConfig.PagerInterval); i <= Math.Min(totalPages - 1, page + Consts.NewsConfig.PagerInterval); i++)
+            {
+                @RenderPage(page, i, Html.Raw(i.ToString()), @dataAttr)
+            }
+            @if (page + Consts.NewsConfig.PagerInterval < totalPages - 1)
+            {
+                <li>...</li>
+            }
+
+            @if (totalPages > 1)
+            {
+                @RenderPage(page, totalPages, Html.Raw(totalPages.ToString()), @dataAttr)
+            }
+            @if (page != totalPages)
+            {
+                @RenderPage(page, page + 1, rightTriangle(null), @dataAttr, "pager-triangle")
+            }
+        </ul>
+    </div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        InitArticlesPager('@dataAttr', @routingObj);
+    });
+</script>

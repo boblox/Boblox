@@ -1,0 +1,25 @@
+﻿@using Umbraco.Web.Templates
+@using Web.Helpers
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<dynamic>
+@{
+    var linkId = Utils.GenerateId("rte");
+    var rteId = Utils.GenerateId("rte");
+}
+
+<a id="@linkId" onclick="return false;" href="#" class="header-coloured-link">
+    <header class="header-coloured with-margin @Model.headerValue.colour">
+        <h4>
+            <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+            @Model.headerValue.text
+        </h4>
+    </header>
+</a>
+<div id="@rteId">
+    @Html.Raw(TemplateUtilities.ParseInternalLinks(Model.value.ToString()))
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        InitCollapsibleHeader('@linkId', '@rteId');
+    });
+</script>

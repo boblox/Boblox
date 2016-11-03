@@ -1,0 +1,32 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@{
+    var container = Model.Content
+        .AncestorOrSelf(1)
+        .FirstChild<BoardContainer>();
+    var items = container
+        .Children<BoardMember>();
+
+}
+
+<article class="board-members-container">
+    <header class="title">
+        <h2>@container.GetTitle()</h2>
+    </header>
+    <div class="row">
+        @foreach (var item in items)
+        {
+            var image = item.Image;
+            var imageUrl = image.Src + image.GetCropUrl(image.Crops.First().Alias);
+            <div class="col-sm-8">
+                <article class="board-member center-block">
+                    <img class="img-responsive img-circle" src="@imageUrl" alt="" />
+                    <header class="title">
+                        <h4>@item.GetTitle()</h4>
+                    </header>
+                    <div>@item.Pseudo</div>
+                    <div>@item.ManagementArea</div>
+                </article>
+            </div>
+        }
+    </div>
+</article>

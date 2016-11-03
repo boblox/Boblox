@@ -1,0 +1,18 @@
+﻿@inherits UmbracoViewPage<List<Tuple<int, string>>>
+@{
+    var years = Model;
+    var dataAttr = (string)ViewData["DataAttr"];
+    var routingObj = (string)ViewData["RoutingObj"];
+}
+<select class="selectpicker years-list" @dataAttr data-width="100%">
+    @foreach (var year in years)
+    {
+        <option data-year="@year.Item1">@year.Item2</option>
+    }
+</select>
+
+<script type="text/javascript">
+    $(function () {
+        InitYearsList('@dataAttr', @routingObj);
+    });
+</script>

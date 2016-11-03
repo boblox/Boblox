@@ -1,0 +1,30 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@{
+    var latitude = Convert.ToString(Model.MacroParameters["Latitude"]);
+    var longitude = Convert.ToString(Model.MacroParameters["Longitude"]);
+    var title = (string)Model.MacroParameters["Title"];
+    var height = Convert.ToInt32(Model.MacroParameters["MapHeight"]);
+    var zoom = Convert.ToInt32(Model.MacroParameters["MapZoom"]);
+
+    var id = Utils.GenerateId("googleMap");
+}
+
+<article id="@id" class="google-map-container" style="height:@(height)px"></article>
+
+<script type="text/javascript">
+    function initMap() {
+        var settings = {
+            longitude: @longitude,
+            latitude: @latitude,
+            title: "@title",
+            height: @height,
+            zoom: @zoom,
+            id: "@id"
+        };
+        InitGoogleMap(settings);
+    }
+</script>
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCl9lmZDJob7gDTZ_QGKD9LIuzr8L759o0&callback=initMap&language=uk">
+</script>

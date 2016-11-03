@@ -1,0 +1,107 @@
+﻿@using System.Linq.Expressions
+@model ContactForm
+@{
+    var formGroupClass = (string)null;//"form-group-sm";
+    var cssClass = "input-lg";
+}
+
+@functions
+{
+    public delegate MvcHtmlString EditorDelegate<TModel, TValue>(Expression<Func<TModel, TValue>> expression, object additionalViewData);
+
+    public HelperResult ContactFormEditor<TModel, TValue>(
+        HtmlHelper<TModel> html,
+        Expression<Func<TModel, TValue>> expression,
+        EditorDelegate<TModel, TValue> editor,
+        string formGroupClass = null,
+        string cssClass = null)
+    {
+        var metadata = ModelMetadata.FromLambdaExpression(expression, html.ViewData);
+        //var labelString = metadata.DisplayName ?? metadata.PropertyName ?? string.Empty;
+        var labelString = html.LabelFor(expression, new { @class = "control-label" });
+        //var labelString = html.LabelFor(expression, new { @class = "col-sm-9 control-label" });
+        var editorString = editor(expression, new { @class = cssClass });
+        var validationString = html.ValidationMessageFor(expression, null, new { @class = "" });
+        return ContactFormEditorHelper(editorString, labelString, validationString, formGroupClass);
+    }
+}
+
+@helper ContactFormEditorHelper(MvcHtmlString editorString, MvcHtmlString labelString, MvcHtmlString validationString, string formGroupClass)
+{
+    <div class="form-group @formGroupClass">
+        @labelString
+        @editorString
+        @validationString
+    </div>
+}
+
+<article id="ContactFormContainer" class="contact-form-container">
+    @using (Ajax.BeginForm("Send", "ContactForm", null,
+                        new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            //UpdateTargetId = "ContactFormContainer",
+                            OnFailure = "contactForm.showError",
+                            OnSuccess = "contactForm.showSuccess",
+                            OnBegin = "contactForm.onBegin"
+                        },
+                        new { @class = "contact-form", role = "form" }))
+    {
+        @*<p>Зворотній зв'язок</p>*@
+        @ContactFormEditor(Html, model => model.NameSurname, Html.EditorFor, formGroupClass, cssClass)
+        @ContactFormEditor(Html, model => model.ClientEmail, Html.EditorFor, formGroupClass, cssClass)
+        @ContactFormEditor(Html, model => model.Description, Html.EditorFor, formGroupClass, cssClass)
+        @Html.HiddenFor(model => model.EmailFrom)
+        @Html.HiddenFor(model => model.EmailTo)
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary btn-send-form" value="@Localization.ContactFormSend" />
+        </div>
+    }
+</article>
+
+<script type="text/javascript">
+    var contactForm = function () {
+        return {
+            onBegin:function() {
+                $("#ContactFormContainer").fadeOut();
+            },
+            showError: function () {
+                showDialog("Нажаль сталась помилка і ми не змогли відправити форму:(");
+            },
+            showSuccess: function (result) {
+                if (result.success) {
+                    showDialog("Дякуємо. Ваше запитання було відправлено.");
+                } else {
+                    showDialog("Нажаль сталась помилка і ми не змогли відправити форму:(");
+                }
+            }
+        }
+    }();
+
+    //jQuery.validator.setDefaults({
+    //    highlight: function (element, errorClass, validClass) {
+    //        if (element.type === 'radio') {
+    //            this.findByName(element.name).addClass(errorClass).removeClass(validClass);
+    //        } else {
+    //            $(element).addClass(errorClass).removeClass(validClass);
+    //            $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+    //        }
+    //    },
+    //    unhighlight: function (element, errorClass, validClass) {
+    //        if (element.type === 'radio') {
+    //            this.findByName(element.name).removeClass(errorClass).addClass(validClass);
+    //        } else {
+    //            $(element).removeClass(errorClass).addClass(validClass);
+    //            $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+    //        }
+    //    }
+    //});
+
+    //$(function () {
+    //    $("span.field-validation-valid, span.field-validation-error").addClass('help-block');
+    //    $("div.form-group").has("span.field-validation-error").addClass('has-error');
+    //    $("div.validation-summary-errors").has("li:visible").addClass("alert alert-block alert-danger");
+    //});
+</script>

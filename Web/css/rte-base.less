@@ -1,0 +1,83 @@
+﻿/*!Styling for Rich text editor*/
+
+@import "Bootstrap/bootstrap.less";
+@import (reference) "variables.less";
+
+/*Back office styling*/
+.mce-content-body {
+    body& {
+        font-family: @font-family-base;
+        font-size: @font-size-base;
+    }
+
+    img {
+        .img-responsive();
+    }
+
+    iframe {
+        max-width: 100%;
+    }
+
+    h2 {
+        color: @orange-color-a;
+    }
+
+    h3 {
+        text-transform: uppercase;
+        color: @gray-color-2;
+        font-weight: normal;
+    }
+
+    ul, ol {
+        padding-left: @list-default-padding;
+    }
+
+    a:focus {
+        outline: none;
+    }
+}
+
+/*Styling for both back-office and front-end*/
+
+.rte-button {
+    a {
+        .btn;
+        .btn-default;
+    }
+}
+
+.rte-big-text {
+    font-size: @font-size-large;
+}
+
+/* EDITOR PROPERTIES - PLEASE DON'T DELETE THIS LINE TO AVOID DUPLICATE PROPERTIES */
+
+/**umb_name:Великий заголовок*/
+h2 {
+    /**/
+}
+
+/**umb_name:Нормальний заголовок*/
+h3 {
+    /**/
+}
+
+/**umb_name:Маленький заголовок*/
+h4 {
+    /**/
+}
+
+/**umb_name:Цитата*/
+blockquote {
+    /**/
+}
+
+/**umb_name:Кнопка(діє на посилання!)*/
+.rte-button {
+    /**/
+}
+
+/**umb_name:Більший текст*/
+.rte-big-text {
+    /**/
+}

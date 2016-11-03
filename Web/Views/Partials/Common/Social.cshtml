@@ -1,0 +1,34 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    // Model.Content is the current page that we're on
+    // AncestorsOrSelf is all of the ancestors this page has in the tree
+    // (1) means: go up to level 1 and stop looking for more ancestors when you get there
+    // First() gets the first ancestor found (the home page, on level 1)
+    var homePage = Model.Content.AncestorOrSelf<Site>();
+    //var rssLink = homePage.RssLink; 
+    var vkLink = homePage.VkLink;
+    var facebookLink = homePage.FacebookLink;
+    //var instagramLink = homePage.InstagramLink;
+    //var donateLink = homePage.DonateLink;
+}
+
+<!-- Contact -->
+<ul class="contacts">
+    @*@RenderLinkIfNotEmpty(rssLink, "rss", "Підписатись на новини")*@
+    @RenderLinkIfNotEmpty(vkLink, "vk", "Vk")
+    @RenderLinkIfNotEmpty(facebookLink, "facebook", "Facebook")
+    @*@RenderLinkIfNotEmpty(instagramLink, "instagram", "Instagram")*@
+    @*@RenderLinkIfNotEmpty(donateLink, "donate", "Долучитись коштами")*@
+</ul>
+<!-- /Contact -->
+@helper RenderLinkIfNotEmpty(dynamic link, string cssClass, string linkName, string title = "")
+{
+    if (string.IsNullOrEmpty(link) == false)
+    {
+        <li>
+            <a href="@link" class="@cssClass" title="@title">
+                <span></span>
+            </a>
+        </li>
+    }
+}

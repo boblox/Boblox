@@ -1,0 +1,592 @@
+﻿/*!Globals - styling for global things which don't directly
+   belong to site design(bootstrap, umbraco packages, js plugins, grid editors etc)*/
+@import (reference) "Bootstrap/mixins.less";
+@import (reference) "Bootstrap/variables.less";
+/*@import (reference) "Bootstrap/labels.less";*/
+@import (reference) "variables.less";
+@import (reference) "mixins.less";
+
+/*Internal Components(Macro and plugins)*********************************************/
+/*Coloured-headers*********************************************/
+.header-coloured {
+    color: white;
+    padding: 5px 20px 5px 20px;
+
+    &.with-margin {
+        margin-bottom: 20px;
+    }
+
+    span.glyphicon {
+        vertical-align: top;
+    }
+
+    &.orange {
+        background-color: #e25900;
+    }
+
+    &.orange-light {
+        background-color: #fe8435;
+    }
+
+    &.ochre {
+        background-color: #ef9f05;
+    }
+
+    &.yellow {
+        background-color: #efb005;
+    }
+}
+
+.header-coloured-link {
+    &:focus, &:hover {
+        text-decoration: none;
+        outline: none;
+    }
+}
+
+/*Contact Form*************************************************/
+.contact-form-container {
+    .contact-form {
+        max-width: 365px;
+
+        & > .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            /*button send*/
+            &:last-child {
+                justify-content: flex-start;
+            }
+        }
+
+        .control-label {
+            font-weight: normal;
+        }
+
+        .field-validation-error {
+            margin-left: 3px;
+            font-size: @font-size-small;
+        }
+
+        textarea {
+            resize: vertical;
+            height: auto;
+        }
+
+        input, textarea {
+            width: 95%;
+        }
+    }
+
+    @media(max-width:@screen-xs-max) {
+        flex-basis: 100%;
+
+        .contact-form {
+            max-width: none;
+            //button send
+            & > .form-group:last-child {
+                justify-content: unset;
+            }
+
+            .btn-send-form {
+                margin-right: unset;
+                width: 95%;
+            }
+        }
+    }
+}
+
+/*Google map***************************************************/
+.google-map-container {
+    width: 100%;
+    margin-top: 40px;
+}
+
+/*Board members************************************************/
+.board-members-container {
+    margin: 50px 0 0px;
+
+    .title {
+        text-align: center;
+    }
+
+    .board-member {
+        margin-bottom: 30px;
+        font-size: @font-size-middle-large;
+        text-align: center;
+        max-width: 300px;
+
+        h4 {
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        img {
+            padding: 40px 0;
+        }
+    }
+}
+
+/*Tabbed rte***************************************************/
+.tabbed-rte {
+    .nav {
+        border-bottom: solid 1px @gray-color-5;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        font-size: @font-size-extra-large;
+
+        &:before, &:after {
+            content: none; /*Do this because  otherwise justify-content: space-between not work*/
+        }
+
+        li {
+            @media(max-width: @screen-xs-max) {
+                flex-basis: 100%;
+            }
+
+            a {
+                opacity: 0.5;
+                padding: 20px 5px 20px 5px;
+                .transition(all 0.2s);
+                border-bottom: 5px solid transparent;
+            }
+
+            &.active a, & a:hover, & a:focus {
+                opacity: 1;
+                border-bottom-color: @orange-color-a;
+            }
+        }
+    }
+
+    .tab-content {
+        margin-top: 50px;
+    }
+}
+
+/*Customization of OWL Carousel********************************/
+/*Carousel with paging dots*/
+.pagination-carousel {
+    .owl-carousel.owl-theme {
+        .owl-pagination .owl-page {
+            & span {
+                height: 14px;
+                width: 14px;
+            }
+        }
+
+        .owl-item {
+            img {
+                margin: 0 auto;
+                max-height: 700px;
+            }
+        }
+    }
+}
+
+/*Carousel with paging dots.*/
+/*"Carousel" grid editor (and also macro)*/
+.carousel-widget-container.pagination-carousel {
+    margin-bottom: 20px;
+
+    .owl-carousel.owl-theme {
+        .owl-item {
+            img {
+                padding: 1px; /*fix for intersection of neighbor images!*/
+            }
+        }
+    }
+}
+
+/*Carousel with preview.*/
+/*"Gallery" grid editor*/
+.gallery-widget-container {
+    margin-bottom: 20px;
+    background-color: @white-color;
+    // Used in gallery. Slide part
+    & .slide {
+        .owl-carousel {
+            border: solid @orange-color-a;
+            /*background-color: @black-color;*/
+            border-width: 8px 8px 0 8px;
+
+            .owl-item {
+                height: 600px;
+
+                img {
+                    margin: 0 auto;
+                    max-height: 100%;
+                    padding: 1px; /*fix for intersection of neighbor images!*/
+                }
+            }
+        }
+    }
+    //Carousel with preview. Used in gallery. Preview-list part
+    & .preview-list {
+        position: relative;
+
+        .owl-carousel-prev, .owl-carousel-next {
+            width: 60px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            z-index: 10;
+            cursor: pointer;
+            background-color: @orange-color-a;
+            opacity: 0.5;
+            .transition(all 0.4s);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                opacity: 0.8;
+            }
+
+            span {
+                color: @white-color;
+                font-size: 30px;
+            }
+        }
+
+        .owl-carousel-prev {
+            left: 0;
+        }
+
+        .owl-carousel-next {
+            right: 0;
+        }
+
+        .owl-carousel {
+            border: solid @orange-color-a;
+            border-width: 8px 3px 8px 3px;
+
+            .owl-wrapper-outer {
+                .owl-item {
+                    height: 150px;
+                    /*background-color: @black-color;*/
+                    border: solid @orange-color-a;
+                    border-width: 5px;
+                    overflow: hidden;
+                    cursor: pointer;
+
+                    &.selected {
+                        border-color: @orange-color-b;
+                    }
+
+                    img {
+                        height: auto;
+                        width: auto;
+                        max-width: none;
+                        max-height: 100%;
+                        margin: 0 auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*External Components(Bootstrap, JS plugins)******************************************/
+/*JQuery unobtrusive validation********************************/
+.field-validation-error {
+    color: @state-danger-text;
+    display: inline-block;
+
+    @media(min-width:@screen-sm-min) {
+        margin-left: 10px;
+    }
+}
+
+textarea, input {
+    &.input-validation-error {
+        border-color: @state-danger-border;
+    }
+}
+
+/*Bootstrap****************************************************/
+/*Buttons***************/
+.btn {
+    .transition(all 0.5s);
+    border-radius: 0;
+    text-transform: uppercase;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-size: @font-size-large;
+    font-weight: bold;
+
+    &.btn-default {
+        color: @orange-color-a;
+        background-color: @white-color;
+        border-color: @orange-color-a;
+
+        &:focus, &:hover, &:active,
+        &.focus, &.hover, &.active {
+            color: white;
+            background-color: @orange-color-b;
+            border-color: @orange-color-b;
+            outline: none;
+        }
+    }
+    //"primary" - class for Umbraco Forms buttons
+    &.btn-primary, &.primary {
+        color: @white-color;
+        background-color: @orange-color-a;
+        border-color: @orange-color-a;
+
+        &:focus, &:hover, &:active,
+        &.focus, &.hover, &.active {
+            color: white;
+            background-color: @orange-color-b;
+            border-color: @orange-color-b;
+            outline: none;
+        }
+    }
+}
+
+/*Contour forms************************************************/
+.contour, #contour {
+    padding: 0 !important;
+
+    .contourPage {
+        .contourField {
+            margin-bottom: 25px;
+        }
+
+        input, textarea {
+            &.contourError, &.input-validation-error {
+                background: white;
+                border: 1px solid @orange-color-a;
+            }
+        }
+
+        input.text, input.title, input.datepickerfield, textarea, select {
+            border: 1px solid @orange-color-a;
+            padding: 5px;
+            margin: 0.5em 0;
+            .form-control-focus(@orange-color-b);
+        }
+
+        .contourIndicator {
+            color: @orange-color-a;
+        }
+
+        #recaptcha_widget_div {
+            margin-left: 0;
+        }
+
+        span.field-validation-error {
+            color: @orange-color-a !important;
+        }
+    }
+}
+
+/*Magnific PopUp***********************************************/
+.mfp-container {
+    @close-button-height: 44px;
+    @share-button-width: 30px;
+
+    .mfp-close {
+        right: 0;
+        background: transparent url('images/magnific-popup-close.png') no-repeat right center;
+    }
+
+    .mfp-figure {
+        &:after {
+            top: @close-button-height;
+            right: @share-button-width;
+        }
+
+        ul.mfp-share-buttons {
+            width: @share-button-width;
+            padding: 0;
+            padding-top: @close-button-height+10px;
+            margin: 0;
+            float: right;
+
+            li {
+                .social-icons(black);
+                margin: 0 0 10px 6px;
+            }
+        }
+
+        figure {
+            overflow: hidden;
+
+            img.mfp-img {
+                padding-top: @close-button-height;
+            }
+        }
+
+        .mfp-counter {
+            right: @share-button-width;
+        }
+    }
+
+    &.mfp-s-loading .mfp-custom-arrow {
+        display: none;
+    }
+
+    .mfp-custom-arrow {
+        position: absolute;
+        z-index: 1000;
+        top: 10%;
+        width: 50%;
+        height: 80%;
+        opacity: 0;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        background: transparent;
+        .transition(opacity 0.2s);
+
+        &:hover {
+            opacity: 1;
+        }
+
+        div {
+            background: url('images/magnific-popup-arrow.png') transparent no-repeat;
+            height: 103px;
+        }
+
+        &.arrow-left {
+            left: 0;
+            padding-left: 35px;
+
+            div {
+                background-position: right center; /*right because of scaleX*/
+                .scaleX(-1);
+            }
+        }
+
+        &.arrow-right {
+            right: 0;
+            padding-right: 35px;
+            margin-right: @share-button-width;
+
+            div {
+                background-position: right center;
+            }
+        }
+    }
+}
+
+/*Loading spinner for images*******/
+.mfp-preloader {
+    width: 40px;
+    height: 40px;
+    margin: 100px auto;
+    background-color: #fff;
+    border-radius: 100%;
+    .animation(scaleout 1.0s infinite ease-in-out);
+}
+
+@-webkit-keyframes scaleout {
+    0% {
+        .scale(0.0);
+    }
+
+    100% {
+        .scale(1.0);
+        opacity: 0;
+    }
+}
+
+@keyframes scaleout {
+    0% {
+        .scale(0.0);
+    }
+
+    100% {
+        .scale(1.0);
+        opacity: 0;
+    }
+}
+
+/*Animation at open****************/
+
+/* overlay at start */
+.mfp-fade {
+    &.mfp-bg {
+        opacity: 0;
+        .transition(all 0.3s ease-out);
+
+        &.mfp-ready {
+            /* overlay animate in */
+            opacity: 0.8;
+        }
+
+        &.mfp-removing {
+            /* overlay animate out */
+            opacity: 0;
+        }
+    }
+
+    &.mfp-wrap {
+        & .mfp-content {
+            /* content at start */
+            opacity: 0;
+            .transition(all 0.3s ease-out);
+        }
+
+        &.mfp-ready .mfp-content {
+            /* content animate it */
+            opacity: 1;
+        }
+
+        &.mfp-removing .mfp-content {
+            /* content animate out */
+            opacity: 0;
+        }
+    }
+}
+
+/*Animation when switching images**/
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.mfp-figure {
+    .animation-name(fadeIn);
+    .animation-duration(.7s);
+    .animation-timing-function(ease-in-out);
+    .animation-fill-mode(both);
+    .backface-visibility(hidden);
+}

@@ -1,0 +1,15 @@
+﻿<div ng-controller="grid.coloured-header.controller" class="coloured-header">
+    <textarea rows="1"
+              umb-auto-resize
+              umb-auto-focus
+              class="textstring input-block-level {{control.headerValue.colour}}" id="{{control.uniqueId}}_text"
+              ng-model="control.headerValue.text"
+              ng-attr-style="{{control.editor.config.style}}" placeholder="Write text here..."></textarea>
+    <select rows="1"
+            ng-model="control.headerValue.colour" id="{{control.uniqueId}}_text">
+        <option value="orange">Оранжевий</option>
+        <option value="orange-light">Моркв'яний</option>
+        <option value="ochre">Охра</option>
+        <option value="yellow">Жовтий</option>
+    </select>
+</div>

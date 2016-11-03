@@ -1,0 +1,35 @@
+﻿@using Umbraco.Web.Templates
+@inherits UmbracoViewPage<Lecoati.LeBlender.Extension.Models.LeBlenderModel>
+@{
+    var items = Model.Items.ToList();
+}
+
+@if (Request.RawUrl.Contains("GetPartialViewResultAsHtmlForEditor"))
+{
+    /*Render differently in backoffice*/
+    <span>Tabbed rte</span>
+}
+else
+{
+    <div class="tabbed-rte">
+        <ul class="nav nav-pills">
+            @for (var i = 0; i < items.Count; i++)
+            {
+                var item = items[i];
+                <li class="@Umbraco.If(i==0, "active")">
+                    <a href="#@item.GetValue("Title").Replace(" ", "_")" data-toggle="pill">@item.GetValue("Title")</a>
+                </li>
+            }
+        </ul>
+
+        <div class="tab-content">
+            @for (var i = 0; i < items.Count; i++)
+            {
+                var item = items[i];
+                <div id="@item.GetValue("Title").Replace(" ", "_")" class="tab-pane fade @Umbraco.If(i == 0, "in active")">
+                    @Html.Raw(TemplateUtilities.ParseInternalLinks(item.GetValue("Content")))
+                </div>
+            }
+        </div>
+    </div>
+}

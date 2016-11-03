@@ -1,0 +1,8 @@
+﻿@{
+    var value = ViewData.TemplateInfo.FormattedModelValue == ViewData.ModelMetadata.Model ?
+        String.Format(System.Globalization.CultureInfo.CurrentCulture, "{0:0.00}", ViewData.ModelMetadata.Model) :
+        ViewData.TemplateInfo.FormattedModelValue;
+    var @class = "form-control " + ViewData["class"];
+}
+
+@Html.TextBox(string.Empty, value, new { @class, type = "number" })

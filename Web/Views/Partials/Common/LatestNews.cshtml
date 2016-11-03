@@ -1,0 +1,15 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    var news = ContentManager.GetLatestNews(6);
+}
+<div class="latest-news-container">
+    <header class="title">
+        <h3>@Localization.LatestNews</h3>
+    </header>
+    @foreach (var item in news)
+    {
+        <a href="@item.Url" class="item">
+            @item.GetTitle()
+        </a>
+    }
+</div>

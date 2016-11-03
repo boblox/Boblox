@@ -1,0 +1,14 @@
+﻿@model NewsItem
+@{
+    var tagsStr = (string)Model.Tags;
+    var tags = !string.IsNullOrEmpty(tagsStr) ? tagsStr.Split(',') : new string[] { };
+}
+@if (tags.Length > 0)
+{
+    <div class="news-item-tags">
+        @foreach (var tag in tags)
+        {
+            <a href="#">#@tag.Trim()</a>
+        }
+    </div>
+}

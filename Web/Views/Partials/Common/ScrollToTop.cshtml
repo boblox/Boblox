@@ -1,0 +1,10 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    var id = "scroll-to-top";
+}
+<a href="#" id="@id" class="scroll-to-top"></a>
+<script type="text/javascript">
+    $(function () {
+        InitScrollToTop("#@id");
+    });
+</script>

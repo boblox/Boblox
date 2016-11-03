@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{F2E66765-F3A1-4644-97F3-BDF027829ECF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4DA261DE-D8F5-4AE6-8F8C-2F0AE800B6DE}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{4343A3D5-872A-4C7E-AD22-053BD97B80DD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{563002AD-B215-46E9-933B-75DE9E7BAED0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2E66765-F3A1-4644-97F3-BDF027829ECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2E66765-F3A1-4644-97F3-BDF027829ECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2E66765-F3A1-4644-97F3-BDF027829ECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2E66765-F3A1-4644-97F3-BDF027829ECF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4343A3D5-872A-4C7E-AD22-053BD97B80DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4343A3D5-872A-4C7E-AD22-053BD97B80DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4343A3D5-872A-4C7E-AD22-053BD97B80DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4343A3D5-872A-4C7E-AD22-053BD97B80DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

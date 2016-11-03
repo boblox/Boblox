@@ -1,0 +1,9 @@
+﻿@inherits UmbracoViewPage<RedirectPage>
+@{
+    Layout = "LayoutCustom.cshtml";
+    var redirectUrl = Model.RedirectUrl;
+    if (!string.IsNullOrWhiteSpace(redirectUrl))
+    {
+        Response.Redirect(redirectUrl);
+    }
+}

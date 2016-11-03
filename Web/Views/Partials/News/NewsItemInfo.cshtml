@@ -1,0 +1,33 @@
+﻿@model NewsItem
+@{
+    var publishDate = Model.PublishDate == default(DateTime) ? Model.CreateDate : Model.PublishDate;
+    var date = publishDate.ToString("dd-MM-yyyy");
+    var time = publishDate.ToString("HH:mm");
+    var location = Model.Place;
+    var disqusUrl = Model.Url + "#disqus_thread";
+}
+<ul class="news-item-info">
+    <li>
+        <span class="calendar-icon"></span>
+        <span>@date</span>
+    </li>
+    <li>
+        <span class="time-icon"></span>
+        <span>@time</span>
+    </li>
+    @if (!string.IsNullOrEmpty(location))
+    {
+        <li>
+            <span class="location-icon"></span>
+            <span>@location</span>
+        </li>
+    }
+    <li>
+        <span class="time-icon"></span>
+        <a href="@disqusUrl" data-disqus-identifier="@Model.Id"></a>
+    </li>
+    <li>
+        <span class="time-icon"></span>
+        <a href="#">Поділитись</a>
+    </li>
+</ul>
