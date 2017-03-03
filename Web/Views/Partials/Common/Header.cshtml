@@ -1,8 +1,15 @@
 ﻿@inherits UmbracoTemplatePage
 @{
+    var site = Model.Content.AncestorOrSelf<Site>();
 }
-<header class="header-wrapper">
+
+<section class="header-wrapper">
     <div class="container">
-        @{Html.RenderPartial("~/Views/Partials/Navigation/TopNavigation.cshtml");}
+        <header class="title">
+            @{Html.RenderPartial("~/Views/Partials/Common/Logo.cshtml");}
+            <a href="/">
+                <h2>@site.GetTitle()</h2>
+            </a>
+        </header>
     </div>
-</header>
+</section>

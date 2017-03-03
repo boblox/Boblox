@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\UmbracoCms.7.5.4\build\UmbracoCms.props" Condition="Exists('..\packages\UmbracoCms.7.5.4\build\UmbracoCms.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
@@ -26,6 +27,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <TypeScriptToolsVersion>2.0</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -401,8 +403,11 @@
     <Content Include="Config\Lang\zh-CN.user.xml" />
     <Content Include="css\bootstrap-select.min.css" />
     <Content Include="css\fonts.css" />
+    <Content Include="css\images\back.png" />
+    <Content Include="css\images\img-not-found.png" />
     <Content Include="css\images\loading-spinner.gif" />
     <Content Include="css\images\logo-2.png" />
+    <Content Include="css\images\warning.png" />
     <Content Include="css\owl-carousel\owl.theme.css" />
     <Content Include="css\rte.css">
       <DependentUpon>rte.less</DependentUpon>
@@ -609,18 +614,16 @@
     <Content Include="css\styles.less" />
     <Content Include="css\variables.less" />
     <Content Include="Views\Partials\Common\Breadcrumb.cshtml" />
-    <Content Include="Views\Partials\Common\Calendar.cshtml" />
     <Content Include="Views\Partials\Common\Comments.cshtml" />
     <Content Include="Views\Partials\Common\ContactForm.cshtml" />
-    <Content Include="Views\Partials\Home\BannerCarousel.cshtml" />
     <Content Include="Views\Partials\Common\Footer.cshtml" />
     <Content Include="Views\Partials\Common\Header.cshtml" />
     <Content Include="Views\Partials\Common\ImagesCarousel.cshtml" />
     <Content Include="Views\Partials\Common\Logo.cshtml" />
     <Content Include="Views\Partials\Common\ScrollToTop.cshtml" />
     <Content Include="Views\Partials\Common\Social.cshtml" />
-    <Content Include="Views\Partials\Navigation\TopNavigation.cshtml" />
-    <Content Include="Views\Partials\Navigation\TopNavigationList.cshtml" />
+    <Content Include="Views\Partials\Navigation\Navigation.cshtml" />
+    <Content Include="Views\Partials\Navigation\NavigationList.cshtml" />
     <Content Include="Views\ContentBase.cshtml" />
     <Content Include="Views\Home.cshtml" />
     <Content Include="Views\LayoutBase.cshtml" />
@@ -652,12 +655,6 @@
     <Content Include="js\jquery\jquery-2.2.1.min.map" />
     <Content Include="Views\GalleryItem.cshtml" />
     <Content Include="Views\GalleryOverview.cshtml" />
-    <Content Include="Views\Partials\Home\Info.cshtml" />
-    <Content Include="Views\Partials\Home\Announces.cshtml" />
-    <Content Include="Views\AnnounceOverview.cshtml" />
-    <Content Include="Views\AnnounceItem.cshtml" />
-    <Content Include="Views\Partials\Home\News.cshtml" />
-    <Content Include="Views\Partials\Home\Gallery.cshtml" />
     <Content Include="Views\MacroPartials\GoogleMap.cshtml" />
     <Content Include="Views\MacroPartials\RenderUmbracoFormScripts.cshtml" />
     <Content Include="Views\MacroPartials\InsertUmbracoForm.cshtml" />
@@ -692,6 +689,7 @@
     <Content Include="Views\Partials\Grid\Editors\Base.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap3.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap2.cshtml" />
+    <Content Include="Views\Partials\Home\Navigation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -710,14 +708,8 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="App_Data\Models\AnnounceItem.generated.cs" />
-    <Compile Include="App_Data\Models\AnnouncesOverview.generated.cs" />
-    <Compile Include="App_Data\Models\BoardContainer.generated.cs" />
-    <Compile Include="App_Data\Models\BoardMember.generated.cs" />
     <Compile Include="App_Data\Models\File.generated.cs" />
     <Compile Include="App_Data\Models\Folder.generated.cs" />
-    <Compile Include="App_Data\Models\FrontPageBanner.generated.cs" />
-    <Compile Include="App_Data\Models\FrontPageBannerContainer.generated.cs" />
     <Compile Include="App_Data\Models\GalleryByYear.generated.cs" />
     <Compile Include="App_Data\Models\GalleryItem.generated.cs" />
     <Compile Include="App_Data\Models\GalleryOverview.generated.cs" />
@@ -725,12 +717,11 @@
     <Compile Include="App_Data\Models\Image.generated.cs" />
     <Compile Include="App_Data\Models\LocationComponent.generated.cs" />
     <Compile Include="App_Data\Models\Member.generated.cs" />
+    <Compile Include="App_Data\Models\MenuContainer.generated.cs" />
+    <Compile Include="App_Data\Models\MenuItem.generated.cs" />
     <Compile Include="App_Data\Models\NavigationComponent.generated.cs" />
-    <Compile Include="App_Data\Models\NewsByYear.generated.cs" />
     <Compile Include="App_Data\Models\NewsItem.generated.cs" />
     <Compile Include="App_Data\Models\NewsOverview.generated.cs" />
-    <Compile Include="App_Data\Models\PointOfInterest.generated.cs" />
-    <Compile Include="App_Data\Models\PointsOfInterestContainer.generated.cs" />
     <Compile Include="App_Data\Models\RedirectPage.generated.cs" />
     <Compile Include="App_Data\Models\Site.generated.cs" />
     <Compile Include="App_Data\Models\Sitemap.generated.cs" />
@@ -739,7 +730,6 @@
     <Compile Include="App_Data\Models\TitleComponent.generated.cs" />
     <Compile Include="Controllers\ContactFormController.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
-    <Compile Include="Controllers\AnnounceController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Helpers\BundleConfig.cs" />
     <Compile Include="Helpers\Consts.cs" />
@@ -751,7 +741,6 @@
     <Compile Include="Helpers\NonOrderingBundleOrderer.cs" />
     <Compile Include="Helpers\Utils.cs" />
     <Compile Include="Models\GalleryResult.cs" />
-    <Compile Include="Models\AnnounceResult.cs" />
     <Compile Include="Models\NewsResult.cs" />
     <Compile Include="Models\Pager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -781,6 +770,9 @@
   <ItemGroup>
     <Folder Include="App_Plugins\GridEditors\Render\" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -789,6 +781,7 @@
     <ApplicationManifest>App_Plugins\GridEditors\package.manifest</ApplicationManifest>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>

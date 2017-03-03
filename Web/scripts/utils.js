@@ -11,11 +11,11 @@
 
 function reloadDisqusCommentsCounter() {
     window.DISQUSWIDGETS = undefined;
-    $.getScript("http://" + disqus_shortname + ".disqus.com/count.js");
+    $.getScript("http://" + config.disqus_shortname + ".disqus.com/count.js");
 }
 
 var config = {
-    disqusShortName: "spadschyna",
+    disqusShortName: "boblox",
     newsStartPage: 1,
     galleryStartPage: 1,
     yearAllInt: 0

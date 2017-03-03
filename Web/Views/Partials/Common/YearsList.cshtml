@@ -4,12 +4,14 @@
     var dataAttr = (string)ViewData["DataAttr"];
     var routingObj = (string)ViewData["RoutingObj"];
 }
-<select class="selectpicker years-list" @dataAttr data-width="100%">
-    @foreach (var year in years)
-    {
-        <option data-year="@year.Item1">@year.Item2</option>
-    }
-</select>
+<div class="years-list">
+    <select id="years-list" class="selectpicker years-list-inner" @dataAttr data-width="100%">
+        @foreach (var year in years)
+        {
+            <option data-year="@year.Item1">@year.Item2</option>
+        }
+    </select>
+</div>
 
 <script type="text/javascript">
     $(function () {

@@ -4,8 +4,8 @@
     var leftSidebarDefined = IsSectionDefined("LeftSidebar");
     var rightSidebarDefined = IsSectionDefined("RightSidebar");
 
-    var leftSidebarWidth = 6;
-    var rightSidebarWidth = 6;
+    var leftSidebarWidth = 3;
+    var rightSidebarWidth = 3;
     var allWidth = 24;
     var contentWidth = allWidth;
     string cssClass = "no-sidebars-defined";
@@ -32,24 +32,32 @@
     }
 }
 
+@{ Html.RenderPartial("~/Views/Partials/Common/Header.cshtml"); }
 <section class="main-wrapper">
     <div class="container">
-        <div class="row">
-            @if (leftSidebarDefined)
-            {
-                <section class="col-sm-@leftSidebarWidth">
-                    @RenderSection("LeftSidebar")
-                </section>
-            }
-            <section class="col-sm-@contentWidth @cssClass">
-                @RenderSection("Body")
-            </section>
-            @if (rightSidebarDefined)
-            {
-                <section class="col-sm-@rightSidebarWidth">
-                    @RenderSection("RightSidebar")
-                </section>
-            }
+        <div class="main-content">
+            <div class="side-nav">
+                @{Html.RenderPartial("~/Views/Partials/Navigation/Navigation.cshtml");}
+            </div>
+            <div class="content">
+                <div class="row">
+                    @if (leftSidebarDefined)
+                    {
+                        <section class="col-sm-@leftSidebarWidth">
+                            @RenderSection("LeftSidebar")
+                        </section>
+                    }
+                    <section class="col-sm-@contentWidth @cssClass">
+                        @RenderSection("Body")
+                    </section>
+                    @if (rightSidebarDefined)
+                    {
+                        <section class="col-sm-@rightSidebarWidth">
+                            @RenderSection("RightSidebar")
+                        </section>
+                    }
+                </div>
+            </div>
         </div>
     </div>
 </section>

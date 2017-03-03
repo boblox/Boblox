@@ -144,7 +144,7 @@ function InitArticlesPager(dataAttr, routingObj) {
 
 /*********************************************=Years List=***********************************************************/
 function InitYearsList(dataAttr, routingObj) {
-    var select = $("select.years-list[" + dataAttr + "]");
+    var select = $("#years-list[" + dataAttr + "]");
 
     routingObj.addRouteChangeCallback(function (route) {
         select.find("option[data-year=" + route.year + "]").attr("selected", "true");
@@ -160,11 +160,12 @@ function InitYearsList(dataAttr, routingObj) {
 /*********************************************=News Overview Routing=*****************************************************/
 var newsRouting = (function () {
     var callbacks = [];
-    var containerId, overlayId, itemsPerPage, yearAllInt;
+    var overviewPageId, containerId, overlayId, itemsPerPage, yearAllInt;
     var currentRoute, routes, router;
 
     function getInitRoute() {
         var route = {
+            overviewPageId: overviewPageId,
             year: yearAllInt,
             page: config.newsStartPage,
             itemsPerPage: itemsPerPage
@@ -226,6 +227,7 @@ var newsRouting = (function () {
     }
 
     function init(data) {
+        overviewPageId = data.overviewPageId;
         containerId = data.containerId;
         overlayId = data.overlayId;
         itemsPerPage = data.itemsPerPage || 1;
@@ -243,6 +245,7 @@ var newsRouting = (function () {
         '/year/:year/page/:page':
             function (year, page) {
                 currentRoute = {
+                    overviewPageId: overviewPageId,
                     year: decodeURIComponent(year),
                     page: decodeURIComponent(page),
                     itemsPerPage: itemsPerPage
@@ -430,13 +433,26 @@ function InitGoogleMap(settings) {
     });
 }
 
+/**************************************************=Back button=**************************************************************/
+function InitBackButton(id, fallbackUrl) {
+    $("#" + id).on("click",
+        function (e) {
+            e.preventDefault();
+            if (document.referrer) {
+                history.back();
+            } else {
+                location.href = fallbackUrl;
+            }
+        });
+}
+
 /**********************************************=Scroll to top=***************************************************************/
 function InitScrollToTop(identifier) {
     $(window).scroll(function () {
         if ($(this).scrollTop() > 150) {
-            $(identifier).fadeIn("slow");
+            $(identifier).addClass('active');
         } else {
-            $(identifier).fadeOut("slow");
+            $(identifier).removeClass('active');
         }
     });
 
@@ -449,14 +465,22 @@ function InitScrollToTop(identifier) {
 
 /**********************************************=Loading spinner=***************************************************************/
 function InitLoadingSpinner(identifier) {
-    var $loading = $(identifier).hide();
+    var $loading = $(identifier).fadeIn();
+    var pageIsLoading = true;
     $(document)
       .ajaxStart(function () {
           $loading.fadeIn();
       })
       .ajaxStop(function () {
-          $loading.fadeOut();
+          if (!pageIsLoading) {
+              $loading.fadeOut();
+          }
       });
+
+    $(window).load(function () {
+        $loading.fadeOut();
+        pageIsLoading = false;
+    });
 }
 
 /**********************************************=Collapsible header=***********************************************************/
@@ -479,6 +503,6 @@ function InitCollapsibleHeader(linkId, rteId) {
     m.parentNode.insertBefore(a, m);
 })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-ga('create', 'UA-54105375-5', 'auto');
+ga('create', 'UA-54105375-6', 'auto');
 ga('send', 'pageview');
 /*End of Google analytics*/

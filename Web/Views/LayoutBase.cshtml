@@ -24,14 +24,14 @@
     {
         @RenderSection("Scripts")
     }
+    <script id="dsq-count-scr" src="//boblox.disqus.com/count.js" async></script>
 </head>
 <body>
     <!-- /Header -->
     @{ Html.RenderPartial("~/Views/Partials/Common/ScrollToTop.cshtml"); }
     @{ Html.RenderPartial("~/Views/Partials/Common/LoadingSpinner.cshtml"); }
-    @{ Html.RenderPartial("~/Views/Partials/Common/Header.cshtml"); }
+    @*@{ Html.RenderPartial("~/Views/Partials/Common/Header.cshtml"); }*@
     @RenderBody()
-    @{ Html.RenderPartial("~/Views/Partials/Common/Footer.cshtml"); }
-    <script id="dsq-count-scr" src="//spadschyna.disqus.com/count.js" async></script>
+    @*@{ Html.RenderPartial("~/Views/Partials/Common/Footer.cshtml"); }*@
 </body>
 </html>

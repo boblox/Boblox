@@ -16,8 +16,9 @@ namespace Web.Controllers
         public ActionResult Index(int year, int page, int itemsPerPage)
         {
             //System.Threading.Thread.Sleep(1000);
-            var model = ContentManager.GetGalleryItems(year, page, itemsPerPage);
-            return PartialView("~/Views/Partials/Gallery/GalleryList.cshtml", model);
+            //var model = ContentManager.GetGalleryItems(year, page, itemsPerPage);
+            //return PartialView("~/Views/Partials/Gallery/GalleryList.cshtml", model);
+            return null;
         }
     }
 }

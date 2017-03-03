@@ -1,9 +1,10 @@
 ﻿@inherits UmbracoTemplatePage<NewsOverview>
 @{
     Layout = "ContentBase.cshtml";
+    var item = Model.Content;
     var containerId = "news-list";
     var overlayId = "loading-overlay";
-    var newsYears = ContentManager.GetNewsYears();
+    var newsYears = ContentManager.GetNewsYears(item.Id);
     var dict = new ViewDataDictionary
     {
         { "DataAttr", "data-news-link" },
@@ -11,24 +12,39 @@
     };
 }
 
-@section RightSidebar
+@*@section LeftSidebar
+    {
+        @{Html.RenderPartial("~/Views/Partials/Navigation/SideNavigation.cshtml");}
+    }*@
+
+@*@section RightSidebar
 {
-    <div class="standart-right-sidebar">
-        @{Html.RenderPartial("~/Views/Partials/Common/YearsList.cshtml", newsYears, dict);}
-        @{Html.RenderPartial("~/Views/Partials/Common/Calendar.cshtml");}
-    </div>
-}
+}*@
 
 @section Body
 {
     <section class="news-overview-container">
+        <header class="header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="title">
+                        <h3>@Model.Content.GetTitle()</h3>
+                    </div>
+                </div>
+                <div class="col-sm-18">
+                    @{Html.RenderPartial("~/Views/Partials/Common/YearsList.cshtml", newsYears, dict);}
+                </div>
+            </div>
+        </header>
         <div id="@containerId" class="list"></div>
         <div id="@overlayId" class="loading-overlay"></div>
     </section>
 
+
     <script type="text/javascript">
         $(function () {
             newsRouting.init({
+                overviewPageId: '@item.Id',
                 containerId: '@containerId',
                 overlayId: '@overlayId',
                 yearAllInt: @Consts.NewsConfig.YearAllInt,

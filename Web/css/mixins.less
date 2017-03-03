@@ -27,11 +27,9 @@
                 .transition(all 0.4s);
                 display: block;
                 background-color: @background-color;
-
                 /*&.rss {
                     .social-icon(0, 18px);
                 }*/
-
                 &.vk {
                     .social-icon(0, 23px);
                 }
@@ -40,11 +38,10 @@
                     .social-icon(-23px, 12px);
                 }
 
-                /*&.instagram {
-                    .social-icon(-26px, 14px);
+                &.instagram {
+                    .social-icon(-36px, 19px);
                 }
-
-                &.donate {
+                /*&.donate {
                     .social-icon(-40px, 14px);
                 }*/
             }
@@ -53,28 +50,20 @@
 }
 
 .calendar-icon {
-    .news-icon(0, 18px);
+    .news-icon(-1px, 15px);
 }
 
 .time-icon {
-    .news-icon(-18px, 14px);
+    .news-icon(-18px, 16px);
 }
 
 .location-icon {
-    .news-icon(-32px, 13px);
+    .news-icon(-36px, 16px);
 }
 
-/*.comments-icon {
-    .news-icon(-14px, 15px);
+.comments-icon {
+    .news-icon(-54px, 17px);
 }
-
-.share-icon {
-    .news-icon(-29px, 14px);
-}
-
-.category-icon {
-    .news-icon(-43px, 12px);
-}*/
 
 .news-icon(@x, @width) {
     @height: 18px;
@@ -86,17 +75,17 @@
     opacity: 1;
 }
 
-.news-category-color(@color) {
-    background-color: white;
-    color: @color;
+.circle-menu-item-transform(@angle) {
+    transform: rotate(@angle) translate(@nav-circle-size / 2) rotate(-@angle);
+}
 
-    span {
-        border-left: 2px solid @color;
-    }
+.circle-menu-item-color(@active-color: @nav-color-active) {
+    &.active, &:active, &:focus, &:hover {
+        border-color: @active-color;
 
-    &.active, &:hover {
-        color: white;
-        background-color: @color;
+        a {
+            color: @active-color;
+        }
     }
 }
 

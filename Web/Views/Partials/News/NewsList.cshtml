@@ -7,42 +7,44 @@
 {
     var title = item.GetTitle();
     var image = item.Image;
+    var imageUrl = image != null ? image.Src + image.GetCropUrl(image.Crops.First().Alias) :
+        Utils.GetImageNotFoundUrl(Consts.NewsConfig.ThumbImgWidth, Consts.NewsConfig.ThumbImgHeight);
     var subHeader = item.Subtitle;
     var content = new HtmlString(string.Empty); // can't parse content as we are now using Grid Layout
 
     <article class="news-item">
         <div class="row">
-            <div class="col-xs-8">
-                @if (image != null)
-                {
-                    var imageUrl = image.Src + image.GetCropUrl(image.Crops.First().Alias);
-                    <a href="@item.Url" class="image">
-                        <img class="img-responsive" src="@imageUrl" alt="" />
-                    </a>
-                }
-            </div>
-            <div class="col-xs-16">
-                <header class="title">
-                    <h4>
-                        <a href="@item.Url">@title</a>
-                    </h4>
-                    @{ Html.RenderPartial("~/Views/Partials/News/NewsItemInfo.cshtml", item);}
-                    @{ Html.RenderPartial("~/Views/Partials/News/NewsItemTags.cshtml", item);}
-                </header>
-                @{
-                    if (!string.IsNullOrEmpty(subHeader))
-                    {
-                        <div class="byline">
-                            @Html.GetInnerText(string.IsNullOrWhiteSpace(subHeader) ?
-                                content : new HtmlString(subHeader), 200)
-                            <a href="@item.Url">@Localization.ItemReadMore</a>
-                        </div>
-                    }
-                }
+            <div class="col-md-24 col-lg-20">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <a href="@item.Url" class="image">
+                            <img class="img-responsive" src="@imageUrl" alt="" />
+                        </a>
+                    </div>
+                    <div class="col-sm-16">
+                        <header class="title">
+                            <h4>
+                                <a href="@item.Url">@title</a>
+                            </h4>
+                        </header>
+
+                        @{ Html.RenderPartial("/Views/Partials/News/NewsItemInfo.cshtml", item);}
+                        @if (!string.IsNullOrEmpty(subHeader))
+                        {
+                            <div class="byline">
+                                @Html.GetInnerText(string.IsNullOrWhiteSpace(subHeader) ?
+                                    content : new HtmlString(subHeader), 200)
+                                <a href="@item.Url">@Localization.ItemReadMore</a>
+                            </div>
+                        }
+                        @{ Html.RenderPartial("/Views/Partials/News/NewsItemTags.cshtml", item);}
+                        <hr class="break-line visible-xs" />
+                    </div>
+                </div>
             </div>
         </div>
     </article>
-                    }
+                            }
 
 @{
     var dict = new ViewDataDictionary

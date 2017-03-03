@@ -9,8 +9,8 @@
 @headings-font-weight: bold;
 
 @font-size-h1: floor((@font-size-base * 4.29)); // 60px
-@font-size-h2: ceil((@font-size-base * 2.5)); // 35px;
-@font-size-h3: ceil((@font-size-base * 1.4285)); // 20px
+@font-size-h2: ceil((@font-size-base * 2)); // 35px;
+@font-size-h3: ceil((@font-size-base * 1.714)); // 24px
 @font-size-h4: ceil((@font-size-base * 1.285)); // 18px
 @font-size-middle-large: ceil((@font-size-base * 1.1428)); // 16px
 @font-size-extra-large: ceil((@font-size-base * 1.76)); // 25px
@@ -23,8 +23,8 @@
 @black-color: #000000;
 @white-color: #ffffff;
 
-@orange-color-a: #f6ab32;
-@orange-color-b: #ffb235; //#ffbd51;
+@orange-color-a: #9B2D30;
+@orange-color-b: lighten(@orange-color-a, 20%);
 @gray-color-1: #464646;
 @gray-color-2: #555;
 @gray-color-3: #888;
@@ -32,11 +32,19 @@
 @gray-color-5: #ededed;
 @gray-color-6: #f9f9f9;
 
+//menu item colors
+@menu-me-color:#FFCC00;
+@menu-materials-color: #E32636;
+@menu-snots-color: #5DA130;
+
+//body
+@body-bg: #FAF0E6;
+
 //font-color
 @text-color: @gray-color-3;
 
 //global link colors
-@link-color: @orange-color-a;
+@link-color: @orange-color-b;
 @link-hover-color: @orange-color-a;
 
 //hr-color
@@ -46,23 +54,28 @@
 @grid-columns: 24;
 
 //navigation styles=================
+@grid-float-breakpoint: @screen-md-min;
+
 @navbar-height: 70px;
 @navbar-default-color: @white-color;
-@navbar-default-bg: @orange-color-a;
+@navbar-default-bg: @gray-color-6;
 
-@navbar-padding-vertical: 0;
-@navbar-padding-horizontal: 0;
+@navbar-padding-vertical: 0px;
+@navbar-padding-horizontal: 0px;
 @navbar-margin-bottom: 0;
-@navbar-border-radius: 0;
+@navbar-border-radius: 20px;
 
-@navbar-default-link-color: @white-color;
-@navbar-default-link-hover-bg: @orange-color-b;
-@navbar-default-link-hover-color: @white-color;
-@navbar-default-link-active-bg: @orange-color-b;
-@navbar-default-link-active-color: @white-color;
-@navbar-default-toggle-hover-bg: @orange-color-b;
-@navbar-default-toggle-icon-bar-bg: @gray-color-5;
-@navbar-default-toggle-border-color: @gray-color-5;
+@navbar-default-link-color: @nav-color;
+@navbar-default-link-hover-color: @nav-color-active;
+@navbar-default-link-hover-bg: transparent;
+@navbar-default-link-active-color: @nav-color-active;
+@navbar-default-link-active-bg: transparent;
+
+@navbar-default-toggle-hover-bg: @nav-color-active;
+@navbar-default-toggle-icon-bar-bg: @nav-color;
+@navbar-default-toggle-border-color: @nav-color;
+@navbar-default-toggle-margin-horizontal: 20px;
+@navbar-default-toggle-margin-vertical: 20px;
 
 //Shared nav styles
 //@nav-link-padding: 20px 5px;
@@ -90,6 +103,12 @@
 
 //news=========================
 @news-item-sub-margin: 20px;
+
+//home-page-nav
+@nav-circle-size: 550px;
+@nav-item-size: 120px;
+@nav-color: @gray-color-2;
+@nav-color-active: @orange-color-a;
 
 //footer
 @footer-opacity: 0.7;

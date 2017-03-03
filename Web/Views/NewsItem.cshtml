@@ -3,29 +3,45 @@
     Layout = "ContentBase.cshtml";
 
     var item = Model.Content;
-    //var newsOverviewTitle = Model.Content.Ancestor<NewsOverview>().Title;
+    var parent = item.Parent;
+    //var overviewTitle = item.Ancestor<NewsOverview>().Title;
     var title = item.GetTitle();
+    var btnBackId = "btn-back";
+    var fallbackUrl = parent.Url + "#/";
 }
+
+@*@section LeftSidebar
+{
+    @{Html.RenderPartial("~/Views/Partials/Navigation/SideNavigation.cshtml");}
+}*@
 
 @section RightSidebar
 {
-    <div class="standart-right-sidebar">
-        @{Html.RenderPartial("~/Views/Partials/Common/Calendar.cshtml");}
+    @*<div class="standart-right-sidebar">
         @{Html.RenderPartial("~/Views/Partials/Common/LatestNews.cshtml");}
-    </div>
+    </div>*@
 }
 
 @section Body
 {
     <article class="news-item-container">
         <header class="title">
-            <h4>@title</h4>
-            @{ Html.RenderPartial("/Views/Partials/News/NewsItemInfo.cshtml", item);}
-            @{ Html.RenderPartial("/Views/Partials/News/NewsItemTags.cshtml", item);}
+            <a id="@btnBackId" class="btn-back" href="#"></a>
+            <div class="text">
+                <h3>@title</h3>
+                @{ Html.RenderPartial("/Views/Partials/News/NewsItemInfo.cshtml", item);}
+                @{ Html.RenderPartial("/Views/Partials/News/NewsItemTags.cshtml", item);}
+            </div>
         </header>
         <div class="grid-content">
             @Html.GetGridHtml(item, NewsItem.GetModelPropertyType(i => i.Content).PropertyTypeAlias, "Custom")
         </div>
         @{Html.RenderPartial("~/Views/Partials/Common/Comments.cshtml");}
     </article>
+
+    <script type="text/javascript">
+        $(function () {
+            InitBackButton('@btnBackId', '@fallbackUrl');
+        });
+    </script>
 }

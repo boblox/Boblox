@@ -5,6 +5,8 @@ using System.Net.Mail;
 using System.Text;
 using Umbraco.Core;
 using Umbraco.Core.Models;
+using Umbraco.Web;
+using Umbraco.Web.Models;
 using Umbraco.Web.PublishedContentModels;
 
 namespace Web.Helpers
@@ -25,6 +27,12 @@ namespace Web.Helpers
                 pageTitle = !string.IsNullOrEmpty(title) ? title : pageTitle;
             }
             return pageTitle;
+        }
+
+        public static string GetImageNotFoundUrl(int width, int height)
+        {
+            return "/css/images/img-not-found.png"
+                .GetCropUrl(width, height, null, null, null, ImageCropMode.Crop);
         }
 
         public static IEnumerable<PreValue> GetDataTypePreValues(int dataTypeId)

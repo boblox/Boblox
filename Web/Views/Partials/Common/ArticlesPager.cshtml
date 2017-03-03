@@ -13,23 +13,22 @@
     int renderPageNumber,
     IHtmlString template,
     string dataAttr,
-    string @class = null)
+    string @class = null,
+    bool visible = true)
 {
-    <li class="@(@class)">
+    <li class="@(@class) @Umbraco.If(!visible, "invisible")">
         <a @dataAttr data-page="@renderPageNumber" href="#">
             @template
         </a>
     </li>
 }
 
-@if (totalPages > 0)
+@if (totalPages > 1)
 {
     <div class="text-center">
         <ul class="articles-pager">
-            @if (page != 1)
-            {
-                @RenderPage(page, page - 1, leftTriangle(null), @dataAttr, "pager-triangle")
-            }
+            @RenderPage(page, page - 1, leftTriangle(null), @dataAttr, "pager-triangle", page != 1)
+
             @RenderPage(page, 1, Html.Raw(1.ToString()), @dataAttr)
 
             @if (page - Consts.NewsConfig.PagerInterval > 2)
@@ -49,10 +48,7 @@
             {
                 @RenderPage(page, totalPages, Html.Raw(totalPages.ToString()), @dataAttr)
             }
-            @if (page != totalPages)
-            {
-                @RenderPage(page, page + 1, rightTriangle(null), @dataAttr, "pager-triangle")
-            }
+            @RenderPage(page, page + 1, rightTriangle(null), @dataAttr, "pager-triangle", page != totalPages)
         </ul>
     </div>
 }
