@@ -26,7 +26,7 @@
 
 @section Body
 {
-    @if (password == item.Password)
+    @if (string.IsNullOrEmpty(item.Password) || password == item.Password)
     {
         <article class="news-item-container">
             <header class="title">

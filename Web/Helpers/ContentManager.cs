@@ -79,8 +79,7 @@ namespace Web.Helpers
             {
                 Items = items,
                 Page = page,
-                TotalPages = totalPagesCount,
-                AddHiddenPartToUrl = showHidden
+                TotalPages = totalPagesCount
             };
         }
 
