@@ -160,7 +160,7 @@ function InitYearsList(dataAttr, routingObj) {
 /*********************************************=News Overview Routing=*****************************************************/
 var newsRouting = (function () {
     var callbacks = [];
-    var overviewPageId, containerId, overlayId, itemsPerPage, yearAllInt;
+    var overviewPageId, containerId, overlayId, itemsPerPage, yearAllInt, showHidden;
     var currentRoute, routes, router;
 
     function getInitRoute() {
@@ -168,7 +168,8 @@ var newsRouting = (function () {
             overviewPageId: overviewPageId,
             year: yearAllInt,
             page: config.newsStartPage,
-            itemsPerPage: itemsPerPage
+            itemsPerPage: itemsPerPage,
+            showHidden: showHidden
         };
         return route;
     }
@@ -232,6 +233,7 @@ var newsRouting = (function () {
         overlayId = data.overlayId;
         itemsPerPage = data.itemsPerPage || 1;
         yearAllInt = data.yearAllInt || 0;
+        showHidden = data.showHidden || false;
         router.init("/");
 
         //Routing should work only on NewsOverview page
@@ -244,12 +246,9 @@ var newsRouting = (function () {
     routes = {
         '/year/:year/page/:page':
             function (year, page) {
-                currentRoute = {
-                    overviewPageId: overviewPageId,
-                    year: decodeURIComponent(year),
-                    page: decodeURIComponent(page),
-                    itemsPerPage: itemsPerPage
-                };
+                currentRoute = getInitRoute();
+                currentRoute.year = decodeURIComponent(year);
+                currentRoute.page = decodeURIComponent(page);
                 dealWithRoute(currentRoute);
             },
         '/': function () {

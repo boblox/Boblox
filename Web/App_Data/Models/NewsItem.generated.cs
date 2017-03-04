@@ -64,6 +64,15 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// Password
+		///</summary>
+		[ImplementPropertyType("password")]
+		public string Password
+		{
+			get { return this.GetPropertyValue<string>("password"); }
+		}
+
+		///<summary>
 		/// Publish date: You can overrule the date shown on the site by changing it here. If you don't set a date explicitly here then the news item's create date will be shown.
 		///</summary>
 		[ImplementPropertyType("publishDate")]

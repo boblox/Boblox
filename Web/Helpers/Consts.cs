@@ -16,6 +16,9 @@
 
             public const int ThumbImgWidth = 400;
             public const int ThumbImgHeight = 300;
+
+            public const string ShowHiddenQueryString = "h";
+            public const string PasswordQueryString = "p";
         }
 
         public static class GalleryConfig

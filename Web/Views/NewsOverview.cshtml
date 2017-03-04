@@ -1,7 +1,10 @@
-﻿@inherits UmbracoTemplatePage<NewsOverview>
+﻿@using System.Web.Configuration
+@inherits UmbracoTemplatePage<NewsOverview>
 @{
     Layout = "ContentBase.cshtml";
     var item = Model.Content;
+    var parent = item.Parent;
+    var title = item.GetTitle();
     var containerId = "news-list";
     var overlayId = "loading-overlay";
     var newsYears = ContentManager.GetNewsYears(item.Id);
@@ -10,6 +13,13 @@
         { "DataAttr", "data-news-link" },
         { "RoutingObj", "newsRouting" }
     };
+
+    var showHiddenStr = Request.QueryString[Consts.NewsConfig.ShowHiddenQueryString];
+    bool showHidden;
+    bool.TryParse(showHiddenStr, out showHidden);
+
+    var btnBackId = "btn-back";
+    var fallbackUrl = parent.Url;
 }
 
 @*@section LeftSidebar
@@ -28,7 +38,10 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="title">
-                        <h3>@Model.Content.GetTitle()</h3>
+                        <a id="@btnBackId" class="btn-back" href="#"></a>
+                        <div class="text">
+                            <h3>@title</h3>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-18">
@@ -48,7 +61,11 @@
                 containerId: '@containerId',
                 overlayId: '@overlayId',
                 yearAllInt: @Consts.NewsConfig.YearAllInt,
-                itemsPerPage: @Consts.NewsConfig.ItemsPerPageOnOverviewPage});
+                itemsPerPage: @Consts.NewsConfig.ItemsPerPageOnOverviewPage,
+                showHidden: @showHidden.ToString().ToLower()
+            });
+
+            InitBackButton('@btnBackId', '@fallbackUrl');
         });
     </script>
 }

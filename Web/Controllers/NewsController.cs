@@ -16,11 +16,11 @@ namespace Web.Controllers
 
         //[ChildActionOnly]
         [HttpPost]
-        public ActionResult Index(int overviewPageId, int year, int page, int itemsPerPage)
+        public ActionResult Index(int overviewPageId, int year, int page, int itemsPerPage, bool showHidden)
         {
             //System.Threading.Thread.Sleep(1000);
 
-            var model = ContentManager.GetNewsItems(overviewPageId, year, page, itemsPerPage);
+            var model = ContentManager.GetNewsItems(overviewPageId, year, page, itemsPerPage, showHidden);
             return PartialView("~/Views/Partials/News/NewsList.cshtml", model);
         }
 

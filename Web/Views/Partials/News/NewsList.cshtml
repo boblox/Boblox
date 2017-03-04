@@ -11,20 +11,23 @@
         Utils.GetImageNotFoundUrl(Consts.NewsConfig.ThumbImgWidth, Consts.NewsConfig.ThumbImgHeight);
     var subHeader = item.Subtitle;
     var content = new HtmlString(string.Empty); // can't parse content as we are now using Grid Layout
+    var url = !string.IsNullOrEmpty(item.Password) ?
+        string.Format("{0}?{1}={2}", item.Url, Consts.NewsConfig.PasswordQueryString, item.Password) :
+        item.Url;
 
     <article class="news-item">
         <div class="row">
             <div class="col-md-24 col-lg-20">
                 <div class="row">
                     <div class="col-sm-8">
-                        <a href="@item.Url" class="image">
+                        <a href="@url" class="image">
                             <img class="img-responsive" src="@imageUrl" alt="" />
                         </a>
                     </div>
                     <div class="col-sm-16">
                         <header class="title">
                             <h4>
-                                <a href="@item.Url">@title</a>
+                                <a href="@url">@title</a>
                             </h4>
                         </header>
 
@@ -34,7 +37,7 @@
                             <div class="byline">
                                 @Html.GetInnerText(string.IsNullOrWhiteSpace(subHeader) ?
                                     content : new HtmlString(subHeader), 200)
-                                <a href="@item.Url">@Localization.ItemReadMore</a>
+                                <a href="@url">@Localization.ItemReadMore</a>
                             </div>
                         }
                         @{ Html.RenderPartial("/Views/Partials/News/NewsItemTags.cshtml", item);}

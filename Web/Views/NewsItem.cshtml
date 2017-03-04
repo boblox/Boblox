@@ -8,40 +8,51 @@
     var title = item.GetTitle();
     var btnBackId = "btn-back";
     var fallbackUrl = parent.Url + "#/";
+
+    var password = Request.QueryString[Consts.NewsConfig.PasswordQueryString];
 }
 
 @*@section LeftSidebar
-{
-    @{Html.RenderPartial("~/Views/Partials/Navigation/SideNavigation.cshtml");}
-}*@
+    {
+        @{Html.RenderPartial("~/Views/Partials/Navigation/SideNavigation.cshtml");}
+    }*@
 
 @section RightSidebar
 {
     @*<div class="standart-right-sidebar">
-        @{Html.RenderPartial("~/Views/Partials/Common/LatestNews.cshtml");}
-    </div>*@
+            @{Html.RenderPartial("~/Views/Partials/Common/LatestNews.cshtml");}
+        </div>*@
 }
 
 @section Body
 {
-    <article class="news-item-container">
-        <header class="title">
-            <a id="@btnBackId" class="btn-back" href="#"></a>
-            <div class="text">
-                <h3>@title</h3>
-                @{ Html.RenderPartial("/Views/Partials/News/NewsItemInfo.cshtml", item);}
-                @{ Html.RenderPartial("/Views/Partials/News/NewsItemTags.cshtml", item);}
+    @if (password == item.Password)
+    {
+        <article class="news-item-container">
+            <header class="title">
+                <a id="@btnBackId" class="btn-back" href="#"></a>
+                <div class="text">
+                    <h3>@title</h3>
+                    @{ Html.RenderPartial("/Views/Partials/News/NewsItemInfo.cshtml", item); }
+                    @{ Html.RenderPartial("/Views/Partials/News/NewsItemTags.cshtml", item); }
+                </div>
+            </header>
+            <div class="grid-content">
+                @Html.GetGridHtml(item, NewsItem.GetModelPropertyType(i => i.Content).PropertyTypeAlias, "Custom")
             </div>
-        </header>
-        <div class="grid-content">
-            @Html.GetGridHtml(item, NewsItem.GetModelPropertyType(i => i.Content).PropertyTypeAlias, "Custom")
-        </div>
-        @{Html.RenderPartial("~/Views/Partials/Common/Comments.cshtml");}
-    </article>
+            @{ Html.RenderPartial("~/Views/Partials/Common/Comments.cshtml"); }
+        </article>
 
-    <script type="text/javascript">
-        $(function () {
-            InitBackButton('@btnBackId', '@fallbackUrl');
-        });
-    </script>
+        <script type="text/javascript">
+            $(function () {
+                InitBackButton('@btnBackId', '@fallbackUrl');
+            });
+        </script>
+    }
+    else
+    {
+        <div class="grid-content">
+            <p>Sorry, this article is hidden from your all-seeing eye:Р</p>
+        </div>
+    }
 }

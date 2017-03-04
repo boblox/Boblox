@@ -7739,51 +7739,50 @@ ul.articles-pager > li a.active {
   height: 100vh;
 }
 .home-nav-container {
-  /*position: relative;*/
   list-style: none;
   padding: 0;
   margin: 0;
-  width: 550px;
-  height: 550px;
-  border-radius: 50%;
-  border: 1px dashed #555;
+}
+@media (min-width: 992px) {
+  .home-nav-container {
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+    border: 1px dashed #555;
+  }
 }
 .home-nav-container li.nav-item {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   width: 120px;
   height: 120px;
-  margin: -60px;
   border-radius: 50%;
   border: 4px dotted #555;
   background: #FAF0E6;
+  margin: 30px;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
 }
 .home-nav-container li.nav-item a {
-  /*position: relative;*/
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: transparent;
+  color: #555;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
+  position: relative;
 }
 .home-nav-container li.nav-item a span {
   position: relative;
   font-size: 18px;
   font-weight: bold;
-  /*text-transform: uppercase;*/
   z-index: 1;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
-  padding: 0 6px;
+  padding: 0 8px;
 }
 .home-nav-container li.nav-item a span:before {
   position: absolute;
@@ -7802,7 +7801,6 @@ ul.articles-pager > li a.active {
   top: 0;
   left: 0;
   border-radius: 50%;
-  opacity: 0;
   filter: grayscale(100%);
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
@@ -7838,9 +7836,6 @@ ul.articles-pager > li a.active {
 .home-nav-container li.nav-item.me:hover a {
   color: #FFCC00;
 }
-.home-nav-container li.nav-item.materials {
-  transform: rotate(350deg) translate(275px) rotate(-350deg);
-}
 .home-nav-container li.nav-item.materials.active,
 .home-nav-container li.nav-item.materials:active,
 .home-nav-container li.nav-item.materials:focus,
@@ -7852,9 +7847,6 @@ ul.articles-pager > li a.active {
 .home-nav-container li.nav-item.materials:focus a,
 .home-nav-container li.nav-item.materials:hover a {
   color: #E32636;
-}
-.home-nav-container li.nav-item.snots {
-  transform: rotate(210deg) translate(275px) rotate(-210deg);
 }
 .home-nav-container li.nav-item.snots.active,
 .home-nav-container li.nav-item.snots:active,
@@ -7869,13 +7861,45 @@ ul.articles-pager > li a.active {
   color: #5DA130;
 }
 .home-nav-container li.nav-item.fake1 {
-  transform: rotate(45deg) translate(275px) rotate(-45deg);
+  display: none;
 }
 .home-nav-container li.nav-item.fake2 {
-  transform: rotate(130deg) translate(275px) rotate(-130deg);
+  display: none;
 }
 .home-nav-container li.nav-item.fake3 {
-  transform: rotate(290deg) translate(275px) rotate(-290deg);
+  display: none;
+}
+@media (min-width: 992px) {
+  .home-nav-container li.nav-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -60px;
+  }
+  .home-nav-container li.nav-item a {
+    color: transparent;
+  }
+  .home-nav-container li.nav-item a img {
+    opacity: 0;
+  }
+  .home-nav-container li.nav-item.materials {
+    transform: rotate(350deg) translate(275px) rotate(-350deg);
+  }
+  .home-nav-container li.nav-item.snots {
+    transform: rotate(210deg) translate(275px) rotate(-210deg);
+  }
+  .home-nav-container li.nav-item.fake1 {
+    display: block;
+    transform: rotate(45deg) translate(275px) rotate(-45deg);
+  }
+  .home-nav-container li.nav-item.fake2 {
+    display: block;
+    transform: rotate(130deg) translate(275px) rotate(-130deg);
+  }
+  .home-nav-container li.nav-item.fake3 {
+    display: block;
+    transform: rotate(290deg) translate(275px) rotate(-290deg);
+  }
 }
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!CONTENT PAGES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 .main-content {
@@ -7914,7 +7938,16 @@ ul.articles-pager > li a.active {
   margin: 0px 0 70px 0;
 }
 .news-overview-container .header .title {
-  margin: 25px 0 0 15px;
+  display: inline-flex;
+  margin: 20px 0 0 0px;
+}
+.news-overview-container .header .title .text {
+  display: inline-block;
+  margin-left: 15px;
+  vertical-align: top;
+}
+.news-overview-container .header .title .text h3 {
+  margin-top: 4px;
 }
 .news-overview-container .header .years-list {
   margin-top: 12px;

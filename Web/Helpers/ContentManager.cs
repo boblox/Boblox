@@ -35,7 +35,12 @@ namespace Web.Helpers
 
         #endregion
 
-        public static NewsResult GetNewsItems(int overviewPageId, int year, int page, int itemsPerPage)
+        public static NewsResult GetNewsItems(
+            int overviewPageId,
+            int year,
+            int page,
+            int itemsPerPage,
+            bool showHidden)
         {
             var home = UmbracoHelper.TypedContentAtRoot().First();
             var overview = home.FirstChild(i => i.Id == overviewPageId)
@@ -56,10 +61,13 @@ namespace Web.Helpers
                         .ToList();
                 }
 
+                //filter by Password
+                items = items.Where(i => string.IsNullOrEmpty(i.Password) || showHidden).ToList();
+
                 //Sort items
                 items = items.SortNews().ToList();
 
-                //Filter by page 
+                //Filter by page
                 totalPagesCount = (int)Math.Ceiling(((double)items.Count / itemsPerPage));
                 if (page != Consts.NewsConfig.PageAllInt)
                 {
@@ -71,7 +79,8 @@ namespace Web.Helpers
             {
                 Items = items,
                 Page = page,
-                TotalPages = totalPagesCount
+                TotalPages = totalPagesCount,
+                AddHiddenPartToUrl = showHidden
             };
         }
 
@@ -81,7 +90,8 @@ namespace Web.Helpers
                 overviewPageId,
                 Consts.NewsConfig.YearAllInt,
                 1,
-                count).Items;
+                count, 
+                false).Items;
         }
 
         //public static GalleryResult GetGalleryItems(int year, int page, int itemsPerPage)
