@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -13,6 +14,13 @@ namespace Web.Helpers
 {
     public static class Utils
     {
+        public static Random Random;
+
+        static Utils()
+        {
+            Random = new Random((int)DateTime.Now.Ticks);
+        }
+
         public static string GenerateId(string prefix)
         {
             return $"{prefix}_{Guid.NewGuid().ToString("N")}";
@@ -33,6 +41,14 @@ namespace Web.Helpers
         {
             return "/css/images/img-not-found.png"
                 .GetCropUrl(width, height, null, null, null, ImageCropMode.Crop);
+        }
+
+        public static string GetRandomRotateStyle(double min, double max)
+        {
+            var length = Math.Abs(min) + Math.Abs(max);
+            var degree = (Random.Next() % (length * 10)) / 10 - Math.Abs(min);
+            var degreeStr = degree.ToString(CultureInfo.InvariantCulture);
+            return $"transform: rotate({degreeStr}deg)";
         }
 
         public static IEnumerable<PreValue> GetDataTypePreValues(int dataTypeId)

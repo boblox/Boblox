@@ -3,51 +3,58 @@
     var items = Model.Items;
 }
 
-@foreach (var item in items)
-{
-    var title = item.GetTitle();
-    var image = item.Image;
-    var imageUrl = image != null ? image.Src + image.GetCropUrl(image.Crops.First().Alias) :
-        Utils.GetImageNotFoundUrl(Consts.NewsConfig.ThumbImgWidth, Consts.NewsConfig.ThumbImgHeight);
-    var subHeader = item.Subtitle;
-    var content = new HtmlString(string.Empty); // can't parse content as we are now using Grid Layout
-    var url = !string.IsNullOrEmpty(item.Password) ?
-        string.Format("{0}?{1}={2}", item.Url, Consts.NewsConfig.PasswordQueryString, item.Password) :
-        item.Url;
+<div class="row">
+    @for (var i = 0; i < items.Count; i++)
+    {
+        var item = items[i];
+        var title = item.GetTitle();
+        var image = item.Image;
+        var imageUrl = image != null ? image.Src + image.GetCropUrl(image.Crops.First().Alias) :
+            Utils.GetImageNotFoundUrl(Consts.NewsConfig.ThumbImgWidth, Consts.NewsConfig.ThumbImgHeight);
+        var subHeader = item.Subtitle;
+        var content = new HtmlString(string.Empty); // can't parse content as we are now using Grid Layout
+        var url = !string.IsNullOrEmpty(item.Password) ?
+            string.Format("{0}?{1}={2}", item.Url, Consts.NewsConfig.PasswordQueryString, item.Password) :
+            item.Url;
+        var offsetMd = i % 2 == 0 ? "1" : "2";
+        var offsetLg = i % 2 == 0 ? "2" : "4";
+        var sideClass = i % 2 == 0 ? "left" : "right";
+        var rotateStyle = Utils.GetRandomRotateStyle(-1, 1);
 
-    <article class="news-item">
-        <div class="row">
-            <div class="col-md-24 col-lg-20">
-                <div class="row">
-                    <div class="col-sm-8">
-                        <a href="@url" class="image">
-                            <img class="img-responsive" src="@imageUrl" alt="" />
-                        </a>
+        <div class="col-md-offset-@offsetMd col-lg-offset-@offsetLg col-md-10 col-lg-8">
+            <article class="news-item @sideClass" style="@rotateStyle">
+                <header class="title">
+                    <h4>
+                        <a href="@url">@title</a>
+                    </h4>
+                </header>
+                @{ Html.RenderPartial("/Views/Partials/News/NewsItemInfo.cshtml", item);}
+                <a href="@url" class="image">
+                    <img class="img-responsive" src="@imageUrl" alt="" />
+                </a>
+                @if (!string.IsNullOrEmpty(subHeader))
+                {
+                    <div class="byline">
+                        @Html.GetInnerText(string.IsNullOrWhiteSpace(subHeader) ?
+                            content : new HtmlString(subHeader), 120)
+                        @*<a href="@url">@Localization.ItemReadMore</a>*@
                     </div>
-                    <div class="col-sm-16">
-                        <header class="title">
-                            <h4>
-                                <a href="@url">@title</a>
-                            </h4>
-                        </header>
-
-                        @{ Html.RenderPartial("/Views/Partials/News/NewsItemInfo.cshtml", item);}
-                        @if (!string.IsNullOrEmpty(subHeader))
-                        {
-                            <div class="byline">
-                                @Html.GetInnerText(string.IsNullOrWhiteSpace(subHeader) ?
-                                    content : new HtmlString(subHeader), 200)
-                                <a href="@url">@Localization.ItemReadMore</a>
-                            </div>
-                        }
-                        @{ Html.RenderPartial("/Views/Partials/News/NewsItemTags.cshtml", item);}
-                        <hr class="break-line visible-xs" />
-                    </div>
-                </div>
-            </div>
+                }
+                @{ Html.RenderPartial("/Views/Partials/News/NewsItemTags.cshtml", item);}
+                <div class="wheel-top-left"></div>
+                <div class="wheel-top-right"></div>
+                <div class="wheel-bottom-left"></div>
+                <div class="wheel-bottom-right"></div>
+            </article>
         </div>
-    </article>
-                            }
+
+        if (i % 2 == 1)
+        {
+            <div class="clearfix"></div>
+        }
+
+    }
+</div>
 
 @{
     var dict = new ViewDataDictionary

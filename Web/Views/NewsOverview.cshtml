@@ -20,6 +20,10 @@
 
     var btnBackId = "btn-back";
     var fallbackUrl = parent.Url;
+
+    var rotateStyleLeft = Utils.GetRandomRotateStyle(-1, 1);
+    var rotateStyleCenter = Utils.GetRandomRotateStyle(-1, 1);
+    var rotateStyleRight = Utils.GetRandomRotateStyle(-1, 1);
 }
 
 @*@section LeftSidebar
@@ -51,7 +55,9 @@
         </header>
         <div id="@containerId" class="list"></div>
         <div id="@overlayId" class="loading-overlay"></div>
-        <div class="news-overview-vline"></div>
+        <div class="vline-left hidden-xs" style="@rotateStyleLeft"></div>
+        <div class="vline-center hidden-xs" style="@rotateStyleCenter"></div>
+        <div class="vline-right hidden-xs" style="@rotateStyleRight"></div>
     </section>
 
 
