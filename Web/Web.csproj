@@ -661,6 +661,7 @@
     <Content Include="Views\MacroPartials\BoardMembers.cshtml" />
     <Content Include="Views\Partials\Common\YearsList.cshtml" />
     <Content Include="Views\Partials\Common\LatestNews.cshtml" />
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Views\Partials\Common\ImagesGallery.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\Gallery.cshtml" />
     <Content Include="Views\Partials\Gallery\GalleryList.cshtml" />
@@ -696,6 +697,7 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="Web.wpp.targets" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\grid.editors.config.js" />
