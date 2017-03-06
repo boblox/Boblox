@@ -2,10 +2,11 @@
 @{
     var tagsStr = (string)Model.Tags;
     var tags = !string.IsNullOrEmpty(tagsStr) ? tagsStr.Split(',') : new string[] { };
+    var rotateStyle = Utils.GetRandomRotateStyle(-1, 1);
 }
 @if (tags.Length > 0)
 {
-    <div class="news-item-tags">
+    <div class="news-item-tags" style="@rotateStyle">
         @foreach (var tag in tags)
         {
             <a href="#">#@tag.Trim()</a>

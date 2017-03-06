@@ -3,8 +3,8 @@
 @{
     Layout = "ContentBase.cshtml";
     var item = Model.Content;
-    var parent = item.Parent;
-    var title = item.GetTitle();
+    //var parent = item.Parent;
+    //var title = item.GetTitle();
     var containerId = "news-list";
     var overlayId = "loading-overlay";
     var newsYears = ContentManager.GetNewsYears(item.Id);
@@ -18,9 +18,11 @@
     bool showHidden;
     bool.TryParse(showHiddenStr, out showHidden);
 
-    var btnBackId = "btn-back";
-    var fallbackUrl = parent.Url;
+    //var btnBackId = "btn-back";
+    //var fallbackUrl = parent.Url;
 
+    //var rotateStyleText = Utils.GetRandomRotateStyle(-1, 1);
+    //var rotateStyleTitle = Utils.GetRandomRotateStyle(-1, 1);
     var rotateStyleLeft = Utils.GetRandomRotateStyle(-1, 1);
     var rotateStyleCenter = Utils.GetRandomRotateStyle(-1, 1);
     var rotateStyleRight = Utils.GetRandomRotateStyle(-1, 1);
@@ -41,12 +43,7 @@
         <header class="header">
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="title">
-                        <a id="@btnBackId" class="btn-back" href="#"></a>
-                        <div class="text">
-                            <h3>@title</h3>
-                        </div>
-                    </div>
+                    @{ Html.RenderPartial("/Views/Partials/Common/PageTitle.cshtml"); }
                 </div>
                 <div class="col-sm-18">
                     @{Html.RenderPartial("~/Views/Partials/Common/YearsList.cshtml", newsYears, dict);}
@@ -69,10 +66,8 @@
                 overlayId: '@overlayId',
                 yearAllInt: @Consts.NewsConfig.YearAllInt,
                 itemsPerPage: @Consts.NewsConfig.ItemsPerPageOnOverviewPage,
-                showHidden: @showHidden.ToString().ToLower()
+                showHidden: @showHidden.ToString().ToLower(),
             });
-
-            InitBackButton('@btnBackId', '@fallbackUrl');
         });
     </script>
 }

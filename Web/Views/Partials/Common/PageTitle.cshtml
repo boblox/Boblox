@@ -1,0 +1,29 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    var item = Model.Content;
+    var parent = item.Parent;
+    var title = item.GetTitle();
+    var btnBackId = "btn-back";
+    var fallbackUrl = parent.Url + "#/";
+
+    var rotateStyleText = Utils.GetRandomRotateStyle(-1, 1);
+    var rotateStyleTitle = Utils.GetRandomRotateStyle(-1, 1);
+}
+<header class="title">
+    <a id="@btnBackId" class="btn-back" href="#"></a>
+    <div class="text" style="@rotateStyleText">
+        <h3 style="@rotateStyleTitle">@title</h3>
+        @if (item is NewsItem)
+        {
+            var newsItem = item as NewsItem;
+            { Html.RenderPartial("/Views/Partials/News/NewsItemInfo.cshtml", newsItem); }
+            { Html.RenderPartial("/Views/Partials/News/NewsItemTags.cshtml", newsItem); }
+        }
+    </div>
+</header>
+
+<script type="text/javascript">
+    $(function () {
+        InitBackButton('@btnBackId', '@fallbackUrl');
+    });
+</script>

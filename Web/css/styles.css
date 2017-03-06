@@ -1262,7 +1262,7 @@ h2,
 }
 h3,
 .h3 {
-  font-size: 24px;
+  font-size: 28px;
 }
 h4,
 .h4 {
@@ -7463,6 +7463,7 @@ a:focus {
   height: 100%;
   background: rgba(255, 255, 255, 0.5);
   content: "";
+  z-index: 5;
 }
 /*Header***********************************************************/
 .header-wrapper .title {
@@ -7689,7 +7690,7 @@ ul.articles-pager > li a.active {
   }
 }
 .years-list .years-list-inner .btn {
-  font-size: 24px;
+  font-size: 18px;
 }
 .years-list .years-list-inner .dropdown-toggle {
   padding-left: 20px;
@@ -7968,12 +7969,17 @@ ul.articles-pager > li a.active {
   display: inline-block;
   margin-left: 15px;
   vertical-align: top;
+  border: solid transparent;
+  border-image: linear-gradient(to bottom right, #fefcfc 0%, #dc8588 100%);
+  border-image-slice: 1;
+  border-width: 0 2px 2px 0;
 }
 .news-overview-container .header .title .text h3 {
-  margin-top: 4px;
+  margin: 2px 15px 10px 0;
+  margin-top: 2px;
 }
 .news-overview-container .header .years-list {
-  margin-top: 12px;
+  margin-top: 18px;
   display: inline-block;
   float: right;
 }
@@ -8120,7 +8126,7 @@ ul.articles-pager > li a.active {
 .news-overview-container .vline-right {
   position: absolute;
   top: 0px;
-  bottom: 0px;
+  bottom: 80px;
   right: 0px;
   border-left: 5px solid #c8c8c8;
 }
@@ -8331,26 +8337,19 @@ ul.news-item-info li span {
   display: inline-block;
   margin-left: 15px;
   vertical-align: top;
+  border: solid transparent;
+  border-image: linear-gradient(to bottom right, #fefcfc 0%, #dc8588 100%);
+  border-image-slice: 1;
+  border-width: 0 2px 2px 0;
 }
 .news-item-container .title .text h3 {
-  -webkit-transform: rotate(-0.2deg);
-  -ms-transform: rotate(-0.2deg);
-  -o-transform: rotate(-0.2deg);
-  transform: rotate(-0.2deg);
-  margin-top: 4px;
+  margin: 2px 15px 10px 0;
+  margin-top: 2px;
 }
 .news-item-container .news-item-info {
-  -webkit-transform: rotate(0.7deg);
-  -ms-transform: rotate(0.7deg);
-  -o-transform: rotate(0.7deg);
-  transform: rotate(0.7deg);
   margin: 20px 0px 10px;
 }
 .news-item-container .news-item-tags {
-  -webkit-transform: rotate(1deg);
-  -ms-transform: rotate(1deg);
-  -o-transform: rotate(1deg);
-  transform: rotate(1deg);
   margin: 10px 0px 15px;
 }
 .news-item-container .grid-content {
@@ -8367,9 +8366,14 @@ ul.news-item-info li span {
   display: inline-block;
   margin-left: 15px;
   vertical-align: top;
+  border: solid transparent;
+  border-image: linear-gradient(to bottom right, #fefcfc 0%, #dc8588 100%);
+  border-image-slice: 1;
+  border-width: 0 2px 2px 0;
 }
 .text-page-container .title .text h3 {
-  margin-top: 4px;
+  margin: 2px 15px 10px 0;
+  margin-top: 2px;
 }
 .text-page-container .grid-content {
   margin: 35px 0 70px 0;

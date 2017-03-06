@@ -189,6 +189,7 @@ a:focus {
     height: 100%;
     background: rgba(255, 255, 255, 0.5);
     content: "";
+    z-index: 5;
 }
 
 /*Header***********************************************************/
@@ -388,7 +389,7 @@ ul.articles-pager {
 
     .years-list-inner {
         .btn {
-            font-size: @font-size-h3;
+            font-size: @font-size-h4;
         }
 
         .dropdown-toggle {
@@ -666,15 +667,12 @@ ul.articles-pager {
                 display: inline-block;
                 margin-left: 15px;
                 vertical-align: top;
-
-                h3 {
-                    margin-top: 4px;
-                }
+                .page-title();
             }
         }
 
         .years-list {
-            margin-top: 12px;
+            margin-top: 18px;
             display: inline-block;
             float: right;
         }
@@ -825,7 +823,7 @@ ul.articles-pager {
     .vline-right {
         position: absolute;
         top: 0px;
-        bottom: 0px;
+        bottom: 80px;
         right: 0px;
         border-left: 5px solid @gray-color-4;
     }
@@ -1043,21 +1041,15 @@ ul.news-item-info {
             display: inline-block;
             margin-left: 15px;
             vertical-align: top;
-
-            h3 {
-                .rotate(-.2deg);
-                margin-top: 4px;
-            }
+            .page-title();
         }
     }
 
     .news-item-info {
-        .rotate(0.7deg);
         margin: @news-item-sub-margin 0px @news-item-sub-margin - 10px;
     }
 
     .news-item-tags {
-        .rotate(1.0deg);
         margin: @news-item-sub-margin - 10px 0px @news-item-sub-margin - 5px;
     }
 
@@ -1077,10 +1069,7 @@ ul.news-item-info {
             display: inline-block;
             margin-left: 15px;
             vertical-align: top;
-
-            h3 {
-                margin-top: 4px;
-            }
+            .page-title();
         }
     }
 

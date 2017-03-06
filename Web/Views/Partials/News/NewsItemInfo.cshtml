@@ -6,8 +6,9 @@
     var time = publishDate.ToString("HH:mm");
     var location = Model.Place;
     var disqusUrl = Model.Url + "#disqus_thread";
+    var rotateStyle = Utils.GetRandomRotateStyle(-1, 1);
 }
-<ul class="news-item-info">
+<ul class="news-item-info" style="@rotateStyle">
     <li>
         <span class="calendar-icon"></span>
         <span>@date</span>

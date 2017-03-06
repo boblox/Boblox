@@ -75,6 +75,18 @@
     opacity: 1;
 }
 
+.page-title() {
+    border: solid transparent;
+    border-image: linear-gradient(to bottom right, lighten(@orange-color-a, 60%) 0%, lighten(@orange-color-a, 30%) 100%);
+    border-image-slice: 1;
+    border-width: 0 2px 2px 0;
+
+    h3 {
+        margin: 2px 15px 10px 0;
+        margin-top: 2px;
+    }
+}
+
 .circle-menu-item-transform(@angle) {
     transform: rotate(@angle) translate(@nav-circle-size / 2) rotate(-@angle);
 }
