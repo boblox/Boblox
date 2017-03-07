@@ -3,8 +3,6 @@
 @{
     Layout = "ContentBase.cshtml";
     var item = Model.Content;
-    //var parent = item.Parent;
-    //var title = item.GetTitle();
     var containerId = "news-list";
     var overlayId = "loading-overlay";
     var newsYears = ContentManager.GetNewsYears(item.Id);
@@ -18,24 +16,10 @@
     bool showHidden;
     bool.TryParse(showHiddenStr, out showHidden);
 
-    //var btnBackId = "btn-back";
-    //var fallbackUrl = parent.Url;
-
-    //var rotateStyleText = Utils.GetRandomRotateStyle(-1, 1);
-    //var rotateStyleTitle = Utils.GetRandomRotateStyle(-1, 1);
     var rotateStyleLeft = Utils.GetRandomRotateStyle(-1, 1);
     var rotateStyleCenter = Utils.GetRandomRotateStyle(-1, 1);
     var rotateStyleRight = Utils.GetRandomRotateStyle(-1, 1);
 }
-
-@*@section LeftSidebar
-    {
-        @{Html.RenderPartial("~/Views/Partials/Navigation/SideNavigation.cshtml");}
-    }*@
-
-@*@section RightSidebar
-{
-}*@
 
 @section Body
 {

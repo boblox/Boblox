@@ -433,6 +433,27 @@ function InitGoogleMap(settings) {
 }
 
 /**************************************************=Back button=**************************************************************/
+function InitGridContent(gridId) {
+    function getRandomTransform(minDegree, maxDegree, minTranslate, maxTranslate) {
+        var degreeLength = Math.abs(minDegree) + Math.abs(maxDegree);
+        var translateLength = Math.abs(minTranslate) + Math.abs(maxTranslate);
+        var degree = (Math.random() * degreeLength) - Math.abs(minDegree);
+
+        var translateF = function () { return Math.random() * translateLength - Math.abs(minTranslate) };
+        var translateX = translateF();
+        var translateY = translateF();
+        return "rotate(" + degree + "deg) translate(" + translateX + "px, " + translateY + "px)";
+    }
+
+    $("#" + gridId)
+        .find("p, ul, ol, blockquote, h1, h2, h3, h4, " +
+            "iframe, img:not(.lazyOwl), .gallery-widget-container, .carousel-widget-container")
+        .each(function () {
+            $(this).css("transform", getRandomTransform(-0.6, 0.6, -5, 5));
+        });
+}
+
+/**************************************************=Back button=**************************************************************/
 function InitBackButton(id, fallbackUrl) {
     $("#" + id).on("click",
         function (e) {

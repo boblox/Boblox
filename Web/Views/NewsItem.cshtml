@@ -16,9 +16,7 @@
     {
         <article class="news-item-container">
             @{ Html.RenderPartial("/Views/Partials/Common/PageTitle.cshtml"); }
-            <div class="grid-content">
-                @Html.GetGridHtml(item, NewsItem.GetModelPropertyType(i => i.Content).PropertyTypeAlias, "Custom")
-            </div>
+            @{ Html.RenderPartial("/Views/Partials/Common/GridContent.cshtml"); }
             @{ Html.RenderPartial("~/Views/Partials/Common/Comments.cshtml"); }
         </article>
     }

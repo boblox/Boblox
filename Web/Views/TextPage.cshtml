@@ -13,8 +13,6 @@
 {
     <div class="text-page-container">
         @{ Html.RenderPartial("/Views/Partials/Common/PageTitle.cshtml"); }
-        <div class="grid-content">
-            @Html.GetGridHtml(item, TextPage.GetModelPropertyType(i => i.Content).PropertyTypeAlias, "Custom")
-        </div>
+        @{ Html.RenderPartial("/Views/Partials/Common/GridContent.cshtml"); }
     </div>
 }

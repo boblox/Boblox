@@ -1,4 +1,7 @@
 ﻿@inherits UmbracoTemplatePage
-<a class="main-logo" href="/">
-    <img src="/Css/images/warning.png" alt=""/>
+@{
+    var transformStyle = Utils.GetRandomRotateStyle(-90, 90);
+}
+<a class="main-logo" style="@transformStyle" href="/">
+    <img src="/Css/images/warning.png" alt="" />
 </a>

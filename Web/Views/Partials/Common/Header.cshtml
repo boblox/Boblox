@@ -1,13 +1,14 @@
 ﻿@inherits UmbracoTemplatePage
 @{
     var site = Model.Content.AncestorOrSelf<Site>();
+    var transformStyle = Utils.GetRandomRotateStyle(-1, 1);
 }
 
 <section class="header-wrapper">
     <div class="container">
         <header class="title">
             @{Html.RenderPartial("~/Views/Partials/Common/Logo.cshtml");}
-            <a href="/">
+            <a class="text" style="@transformStyle" href="/">
                 <h2>@site.GetTitle()</h2>
             </a>
         </header>

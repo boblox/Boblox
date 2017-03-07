@@ -1,0 +1,15 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    var item = Model.Content;
+    var gridId = "grid-content";
+    var contentProperty = "Content";//NewsItem.GetModelPropertyType(i => i.Content).PropertyTypeAlias
+}
+<div id="@gridId" class="grid-content">
+    @Html.GetGridHtml(item, contentProperty, "Custom")
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        InitGridContent('@gridId');
+    });
+</script>
