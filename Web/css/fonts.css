@@ -1,5 +1,42 @@
 ﻿/*@import url('https://fonts.googleapis.com/css?family=Arimo:700,400&subset=latin,cyrillic');*/
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic);
+/*@import url(https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic);*/
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,cyrillic);
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,700&subset=latin,cyrillic);
+/*@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic);*/
+
+/*@font-face {
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/SegoeUIRegular.woff') format('woff');
+}*/
+
+/*@font-face {
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/Segoe.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/SegoeUIBold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/ProximaNovaRegular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/ProximaNovaBold.woff') format('woff');
+}*/

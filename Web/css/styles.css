@@ -1071,7 +1071,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Roboto", "Open Sans", sans-serif;
+  font-family: "Fira Sans", "Segoe UI", "Proxima Nova", sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #555;
@@ -1173,7 +1173,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Roboto", "Open Sans", sans-serif;
+  font-family: "Fira Sans", "Segoe UI", "Proxima Nova", sans-serif;
   font-weight: bold;
   line-height: 1.1;
   color: inherit;
@@ -5070,13 +5070,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #9B2D30;
+  color: #d05e61;
   background-color: transparent;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-  color: #9B2D30;
+  color: #d05e61;
   background-color: transparent;
 }
 .navbar-default .navbar-nav > .disabled > a,
@@ -5090,7 +5090,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #9B2D30;
+  background-color: #d05e61;
 }
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #555;
@@ -5103,7 +5103,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
   background-color: transparent;
-  color: #9B2D30;
+  color: #d05e61;
 }
 @media (max-width: 991px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
@@ -5111,13 +5111,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: #9B2D30;
+    color: #d05e61;
     background-color: transparent;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: #9B2D30;
+    color: #d05e61;
     background-color: transparent;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
@@ -5131,14 +5131,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #555;
 }
 .navbar-default .navbar-link:hover {
-  color: #9B2D30;
+  color: #d05e61;
 }
 .navbar-default .btn-link {
   color: #555;
 }
 .navbar-default .btn-link:hover,
 .navbar-default .btn-link:focus {
-  color: #9B2D30;
+  color: #d05e61;
 }
 .navbar-default .btn-link[disabled]:hover,
 fieldset[disabled] .navbar-default .btn-link:hover,
@@ -6539,7 +6539,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Roboto", "Open Sans", sans-serif;
+  font-family: "Fira Sans", "Segoe UI", "Proxima Nova", sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -6657,7 +6657,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Roboto", "Open Sans", sans-serif;
+  font-family: "Fira Sans", "Segoe UI", "Proxima Nova", sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -7562,7 +7562,7 @@ a:focus {
 .header-nav.navbar .navbar-collapse .navbar-nav > li.active,
 .header-nav.navbar .navbar-collapse .navbar-nav > li:hover,
 .header-nav.navbar .navbar-collapse .navbar-nav > li:focus {
-  border-color: #9B2D30;
+  border-color: #d05e61;
   background-color: #d2d2d2;
 }
 @media (min-width: 992px) {
@@ -7800,14 +7800,14 @@ ul.articles-pager > li a.active {
 .home-nav-container li.nav-item:active,
 .home-nav-container li.nav-item:focus,
 .home-nav-container li.nav-item:hover {
-  border-color: #9B2D30;
+  border-color: #d05e61;
   cursor: pointer;
 }
 .home-nav-container li.nav-item:active a,
 .home-nav-container li.nav-item:focus a,
 .home-nav-container li.nav-item:hover a {
   text-decoration: none;
-  color: #9B2D30;
+  color: #d05e61;
 }
 .home-nav-container li.nav-item:active a img,
 .home-nav-container li.nav-item:focus a img,
@@ -8303,10 +8303,10 @@ ul.news-item-info li span {
   margin-top: 2px;
 }
 .news-item-container .news-item-info {
-  margin: 20px 0px 10px;
+  margin: 20px 15px 10px 0;
 }
 .news-item-container .news-item-tags {
-  margin: 10px 0px 15px;
+  margin: 10px 15px 15px 0;
 }
 .news-item-container .grid-content {
   margin: 35px 0 70px 0;
@@ -8392,14 +8392,17 @@ ul.news-item-info li span {
 /*Internal Components(Macro and plugins)*********************************************/
 /*Coloured-headers*********************************************/
 .header-coloured {
-  color: white;
-  padding: 5px 20px 5px 20px;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
 }
-.header-coloured.with-margin {
-  margin-bottom: 20px;
+.header-coloured h4 {
+  color: #ffffff;
 }
 .header-coloured span.glyphicon {
   vertical-align: top;
+}
+.header-coloured.with-margin {
+  margin-bottom: 20px;
 }
 .header-coloured.orange {
   background-color: #e25900;
@@ -8980,7 +8983,7 @@ input.input-validation-error {
 /*!Styling for Rich text editor*/
 /*Back office styling*/
 body.mce-content-body {
-  font-family: "Roboto", "Open Sans", sans-serif;
+  font-family: "Fira Sans", "Segoe UI", "Proxima Nova", sans-serif;
   font-size: 16px;
 }
 .mce-content-body img {
@@ -8993,11 +8996,20 @@ body.mce-content-body {
 }
 .mce-content-body h2 {
   color: #9B2D30;
+  font-weight: bold;
+  font-size: 28px;
 }
 .mce-content-body h3 {
   text-transform: uppercase;
+  color: #9B2D30;
+  font-weight: normal;
+  font-size: 28px;
+}
+.mce-content-body h4 {
+  text-transform: uppercase;
   color: #555;
   font-weight: normal;
+  font-size: 18px;
 }
 .mce-content-body ul,
 .mce-content-body ol {
@@ -9129,14 +9141,6 @@ fieldset[disabled] a.rte-button a {
   font-size: 18px;
 }
 /* EDITOR PROPERTIES - PLEASE DON'T DELETE THIS LINE TO AVOID DUPLICATE PROPERTIES */
-/**umb_name:Великий заголовок*/
-h2 {
-  /**/
-}
-/**umb_name:Нормальний заголовок*/
-h3 {
-  /**/
-}
 /**umb_name:Маленький заголовок*/
 h4 {
   /**/

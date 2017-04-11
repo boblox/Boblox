@@ -409,7 +409,7 @@ function InitDisqus(identifier) {
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function () {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
 }
@@ -446,7 +446,7 @@ function InitGridContent(gridId) {
     }
 
     $("#" + gridId)
-        .find("p, ul, ol, blockquote, h1, h2, h3, h4, " +
+        .find("p, ul, ol, blockquote, h1, h2, h3, h4, hr, " +
             "iframe, img:not(.lazyOwl), .gallery-widget-container, .carousel-widget-container")
         .each(function () {
             $(this).css("transform", getRandomTransform(-0.6, 0.6, -5, 5));
