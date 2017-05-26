@@ -7327,7 +7327,7 @@ h3 {
 }
 h4 {
   text-transform: uppercase;
-  color: #555;
+  color: #9B2D30;
   font-weight: normal;
 }
 ul,
@@ -8392,29 +8392,36 @@ ul.news-item-info li span {
 /*Internal Components(Macro and plugins)*********************************************/
 /*Coloured-headers*********************************************/
 .header-coloured {
-  padding: 10px 20px 10px 20px;
-  border-radius: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  /*border: 1px solid @orange-color-a;*/
 }
 .header-coloured h4 {
   color: #ffffff;
+  margin: 10px;
+}
+.header-coloured img {
+  padding: 10px 10px 10px 10px;
 }
 .header-coloured span.glyphicon {
   vertical-align: top;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.header-coloured span.glyphicon.open {
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 .header-coloured.with-margin {
   margin-bottom: 20px;
-}
-.header-coloured.orange {
-  background-color: #e25900;
-}
-.header-coloured.orange-light {
-  background-color: #fe8435;
-}
-.header-coloured.ochre {
-  background-color: #ef9f05;
-}
-.header-coloured.yellow {
-  background-color: #efb005;
 }
 .header-coloured-link:focus,
 .header-coloured-link:hover {

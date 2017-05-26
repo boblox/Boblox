@@ -1,4 +1,10 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<dynamic>
-<header class="header-coloured with-margin @Model.headerValue.colour">
-    <h4>@Model.headerValue.text</h4>
+﻿@inherits UmbracoViewPage<Lecoati.LeBlender.Extension.Models.LeBlenderModel>
+@{
+    var item = Model.Items.First();
+    var title = item.GetValue("Title");
+    title = !string.IsNullOrEmpty(title) ? title : "Coloured header";
+}
+
+<header class="header-coloured with-margin" style="background-color: #@item.GetValue("Color")">
+    <h4>@title</h4>
 </header>

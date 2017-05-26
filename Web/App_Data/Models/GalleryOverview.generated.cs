@@ -46,15 +46,6 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// Gallery list
-		///</summary>
-		[ImplementPropertyType("galleryList")]
-		public object GalleryList
-		{
-			get { return this.GetPropertyValue("galleryList"); }
-		}
-
-		///<summary>
 		/// #PropertyHideInNavigation: #PropertyHideInNavigationDesc
 		///</summary>
 		[ImplementPropertyType("umbracoNaviHide")]

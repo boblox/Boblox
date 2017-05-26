@@ -569,6 +569,10 @@
     <Content Include="Config\EmbeddedMedia.config" />
     <Content Include="Config\BaseRestExtensions.config" />
     <Content Include="Config\404handlers.config" />
+    <Content Include="App_Plugins\GridEditors\package.manifest.old">
+      <SubType>Designer</SubType>
+      <DependentUpon>package.manifest</DependentUpon>
+    </Content>
     <None Include="js\jquery\jquery.validate-vsdoc.js" />
     <Content Include="js\jquery\jquery.validate.js" />
     <Content Include="js\jquery\jquery.validate.min.js" />
@@ -693,6 +697,8 @@
     <Content Include="Views\Partials\Home\Navigation.cshtml" />
     <Content Include="Views\Partials\Common\PageTitle.cshtml" />
     <Content Include="Views\Partials\Common\GridContent.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\ColouredHeader-old.cshtml" />
+    <Content Include="Views\Partials\Grid\Editors\CollapsibleRte-old.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,4 +1,4 @@
-﻿.coloured-header textarea.textstring.orange {
+﻿/*.coloured-header textarea.textstring.orange {
     background-color: #e25900;
 }
 
@@ -12,4 +12,23 @@
 
 .coloured-header textarea.textstring.yellow {
     background-color: #efb005;
+}*/
+
+.header-coloured {
+    padding: 15px 15px 15px 15px;
+    border-radius: 15px;
 }
+
+.tabbed-rte .nav {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+    .tabbed-rte .nav li a{
+        padding: 20px 5px 20px 5px;
+        border-radius: 0;
+        border-bottom: 5px solid brown;
+        color: brown;
+        background-color: transparent;
+    }

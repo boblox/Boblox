@@ -46,15 +46,6 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// News
-		///</summary>
-		[ImplementPropertyType("newsList")]
-		public object NewsList
-		{
-			get { return this.GetPropertyValue("newsList"); }
-		}
-
-		///<summary>
 		/// #PropertyHideInNavigation: #PropertyHideInNavigationDesc
 		///</summary>
 		[ImplementPropertyType("umbracoNaviHide")]

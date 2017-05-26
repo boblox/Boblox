@@ -509,7 +509,7 @@ function InitCollapsibleHeader(linkId, rteId) {
     var link = $("#" + linkId);
     link.on("click", function () {
         rte.slideToggle();
-        link.find("span.glyphicon").toggleClass("glyphicon-triangle-right glyphicon-triangle-bottom");
+        link.find("span.glyphicon").toggleClass("open");
     });
     rte.hide();
 }

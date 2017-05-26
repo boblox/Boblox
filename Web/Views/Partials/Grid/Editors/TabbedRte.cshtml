@@ -7,7 +7,24 @@
 @if (Request.RawUrl.Contains("GetPartialViewResultAsHtmlForEditor"))
 {
     /*Render differently in backoffice*/
-    <span>Tabbed rte</span>
+    if (items.Count == 0)
+    {
+        <span>Tabbed rte</span>
+    }
+    else
+    {
+        <div class="tabbed-rte">
+            <ul class="nav nav-pills">
+                @for (var i = 0; i < items.Count; i++)
+                {
+                    var item = items[i];
+                    <li class="@Umbraco.If(i == 0, "active")">
+                        <a href="#@item.GetValue("Title").Replace(" ", "_")" data-toggle="pill">@item.GetValue("Title")</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
 }
 else
 {
@@ -26,8 +43,9 @@ else
             @for (var i = 0; i < items.Count; i++)
             {
                 var item = items[i];
+                var content = item.GetValue("Content") ?? string.Empty;
                 <div id="@item.GetValue("Title").Replace(" ", "_")" class="tab-pane fade @Umbraco.If(i == 0, "in active")">
-                    @Html.Raw(TemplateUtilities.ParseInternalLinks(item.GetValue("Content")))
+                    @Html.Raw(TemplateUtilities.ParseInternalLinks(content))
                 </div>
             }
         </div>

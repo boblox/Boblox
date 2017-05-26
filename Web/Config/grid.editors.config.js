@@ -124,9 +124,71 @@
                     "dataType": "ca90c950-0aff-4e72-b976-a30b1ac57dad"
                 }
             ],
-            "renderInGrid": "0",
+            "renderInGrid": "1",
             "frontView": "",
             "max": 5
+        }
+    },
+    {
+        "name": "Складаний редактор тексту",
+        "alias": "collapsibleRte",
+        "view": "/App_Plugins/LeBlender/editors/leblendereditor/LeBlendereditor.html",
+        "icon": "icon-article",
+        "render": "/App_Plugins/LeBlender/editors/leblendereditor/views/Base.cshtml",
+        "config": {
+            "frontView": "",
+            "editors": [
+                {
+                    "name": "Title",
+                    "alias": "title",
+                    "propretyType": {},
+                    "dataType": "0cc0eba1-9960-42c9-bf9b-60e150b429ae"
+                },
+                {
+                    "name": "Color",
+                    "alias": "color",
+                    "propretyType": {},
+                    "dataType": "0225af17-b302-49cb-9176-b9f35cab9c17"
+                },
+                {
+                    "name": "Image",
+                    "alias": "image",
+                    "propretyType": {},
+                    "dataType": "93929b9a-93a2-4e2a-b239-d99334440a59"
+                },
+                {
+                    "name": "Content",
+                    "alias": "content",
+                    "propretyType": {},
+                    "dataType": "ca90c950-0aff-4e72-b976-a30b1ac57dad"
+                }
+            ],
+            "renderInGrid": "1"
+        }
+    },
+    {
+        "name": "Заголовок: кольоровий",
+        "alias": "colouredHeader",
+        "view": "/App_Plugins/LeBlender/editors/leblendereditor/LeBlendereditor.html",
+        "icon": "icon-forms-paypal",
+        "render": "/App_Plugins/LeBlender/editors/leblendereditor/views/Base.cshtml",
+        "config": {
+            "frontView": "",
+            "editors": [
+                {
+                    "name": "Title",
+                    "alias": "title",
+                    "propretyType": {},
+                    "dataType": "0cc0eba1-9960-42c9-bf9b-60e150b429ae"
+                },
+                {
+                    "name": "Color",
+                    "alias": "color",
+                    "propretyType": {},
+                    "dataType": "0225af17-b302-49cb-9176-b9f35cab9c17"
+                }
+            ],
+            "renderInGrid": "1"
         }
     }
 ]

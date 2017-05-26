@@ -9,35 +9,34 @@
 /*Internal Components(Macro and plugins)*********************************************/
 /*Coloured-headers*********************************************/
 .header-coloured {
-    padding: 10px 20px 10px 20px;
-    border-radius: 10px;
-
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    /*border: 1px solid @orange-color-a;*/
     h4 {
         color: @white-color;
+        margin: 10px;
+    }
+
+    img {
+        padding: 10px 10px 10px 10px;
     }
 
     span.glyphicon {
         vertical-align: top;
+        .transition(all 0.4s ease-in-out);
+        margin-right: 5px;
+        margin-left: 5px;
+
+        &.open {
+            .rotate(90deg);
+        }
     }
 
     &.with-margin {
         margin-bottom: 20px;
-    }
-
-    &.orange {
-        background-color: #e25900;
-    }
-
-    &.orange-light {
-        background-color: #fe8435;
-    }
-
-    &.ochre {
-        background-color: #ef9f05;
-    }
-
-    &.yellow {
-        background-color: #efb005;
     }
 }
 

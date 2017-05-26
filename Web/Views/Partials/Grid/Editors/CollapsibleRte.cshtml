@@ -1,25 +1,49 @@
 ﻿@using Umbraco.Web.Templates
-@using Web.Helpers
-@inherits Umbraco.Web.Mvc.UmbracoViewPage<dynamic>
+@inherits UmbracoViewPage<Lecoati.LeBlender.Extension.Models.LeBlenderModel>
 @{
     var linkId = Utils.GenerateId("rte");
     var rteId = Utils.GenerateId("rte");
+    var item = Model.Items.First();
+    var title = item.GetValue("Title");
+    title = !string.IsNullOrEmpty(title) ? title : "Collapsible Rte";
+    var content = item.GetValue("Content") ?? string.Empty;
+    var imageId = item.GetValue("Image");
 }
 
-<a id="@linkId" onclick="return false;" href="#" class="header-coloured-link">
-    <header class="header-coloured with-margin @Model.headerValue.colour">
+@if (Request.RawUrl.Contains("GetPartialViewResultAsHtmlForEditor"))
+{
+    /*Render differently in backoffice*/
+    <header class="header-coloured with-margin" style="background-color: #@item.GetValue("Color")">
         <h4>
-            <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
-            @Model.headerValue.text
+            <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
+            @title
         </h4>
     </header>
-</a>
-<div id="@rteId">
-    @Html.Raw(TemplateUtilities.ParseInternalLinks(Model.value.ToString()))
-</div>
+}
+else
+{
+    <a id="@linkId" onclick="return false;" href="#" class="header-coloured-link">
+        <header class="header-coloured with-margin" style="background-color: #@item.GetValue("Color")">
+            @if (imageId != null)
+            {
+                var image = Umbraco.TypedMedia(imageId);
+                <div>
+                    <img class="img-responsive" src="@Html.GetThumbnailUrl(image.Url, null, 100)" alt="" />
+                </div>
+            }
+            <h4>
+                <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
+                @item.GetValue("Title")
+            </h4>
+        </header>
+    </a>
+    <div id="@rteId">
+        @Html.Raw(TemplateUtilities.ParseInternalLinks(content))
+    </div>
 
-<script type="text/javascript">
-    $(function () {
-        InitCollapsibleHeader('@linkId', '@rteId');
-    });
-</script>
+    <script type="text/javascript">
+        $(function () {
+            InitCollapsibleHeader('@linkId', '@rteId');
+        });
+    </script>
+}
