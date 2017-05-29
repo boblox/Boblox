@@ -8,6 +8,8 @@
     title = !string.IsNullOrEmpty(title) ? title : "Collapsible Rte";
     var content = item.GetValue("Content") ?? string.Empty;
     var imageId = item.GetValue("Image");
+    var contentPageId = item.GetValue("ContentPage");
+    var contentUrl = !string.IsNullOrEmpty(contentPageId) ? Umbraco.TypedContent(contentPageId).Url : string.Empty;
 }
 
 @if (Request.RawUrl.Contains("GetPartialViewResultAsHtmlForEditor"))
@@ -37,8 +39,11 @@ else
             </h4>
         </header>
     </a>
-    <div id="@rteId">
-        @Html.Raw(TemplateUtilities.ParseInternalLinks(content))
+    <div id="@rteId" data-url="@contentUrl">
+        @if (string.IsNullOrEmpty(contentUrl))
+        {
+            @Html.Raw(TemplateUtilities.ParseInternalLinks(content))
+        }
     </div>
 
     <script type="text/javascript">

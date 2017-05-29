@@ -161,6 +161,12 @@
                     "alias": "content",
                     "propretyType": {},
                     "dataType": "ca90c950-0aff-4e72-b976-a30b1ac57dad"
+                },
+                {
+                    "name": "Content page",
+                    "alias": "contentPage",
+                    "propretyType": {},
+                    "dataType": "a6857c73-d6e9-480c-b6e6-f15f6ad11125"
                 }
             ],
             "renderInGrid": "1"

@@ -507,9 +507,37 @@ function InitLoadingSpinner(identifier) {
 function InitCollapsibleHeader(linkId, rteId) {
     var rte = $("#" + rteId);
     var link = $("#" + linkId);
+    var url = rte.data("url");
+    var animate = function() {
+        rte.animate({
+                height: "toggle",
+                opacity: "toggle"
+            },
+            "slow");
+    }
+
     link.on("click", function () {
-        rte.slideToggle();
         link.find("span.glyphicon").toggleClass("open");
+
+        //load content dynamically if content url is provided
+        if (!$.trim(rte.html()) && url) {
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'html',
+                contentType: 'application/json; charset=utf-8',
+                success: function(data) {
+                    //fill tab content
+                    rte.html($(data).find(".grid-content .umb-grid"));
+                    animate();
+                },
+                error: function(request, status) {
+                    showDialog("Вибачте, неможливо завантажити сторінку");
+                }
+            });
+        } else {
+            animate();
+        }
     });
     rte.hide();
 }
